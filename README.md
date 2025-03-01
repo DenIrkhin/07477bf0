@@ -1,5 +1,7 @@
 # React + TypeScript + Vite
 
+![Check](https://github.com/[owner]/451speer-fe-aircall/actions/workflows/check.yml/badge.svg)
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules with Prettier integration for consistent code formatting.
 
 Currently, two official plugins are available:
@@ -57,6 +59,17 @@ For the best development experience, install the [Prettier VS Code extension](ht
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
 ```
+
+## Continuous Integration with GitHub Actions
+
+This project includes GitHub Actions workflows to automatically check code quality on pull requests:
+
+- **Code Quality Checks**: Runs on all pull requests to main, master, and develop branches
+  - Formatting verification with Prettier
+  - Linting with ESLint
+  - Type checking with TypeScript
+
+The workflow configuration is located in `.github/workflows/check.yml`.
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
