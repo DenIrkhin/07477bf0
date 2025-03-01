@@ -1,49 +1,31 @@
 import { useQuery } from '@tanstack/react-query'
+import { config } from '@config/env'
 
-// Mock data
-const mockCalls = [
-  {
-    id: '1',
-    from: '+33 1 23 45 67 89',
-    to: '+33 9 87 65 43 21',
-    duration: 123,
-    is_archived: false,
-    call_type: 'answered',
-    created_at: '2025-03-01T14:00:00.000Z',
-    direction: 'inbound'
-  },
-  {
-    id: '2',
-    from: '+33 6 78 90 12 34',
-    to: '+33 1 23 45 67 89',
-    duration: 45,
-    is_archived: true,
-    call_type: 'missed',
-    created_at: '2025-03-01T13:45:00.000Z',
-    direction: 'inbound'
-  },
-  {
-    id: '3',
-    from: '+33 1 23 45 67 89',
-    to: '+33 7 65 43 21 09',
-    duration: 67,
-    is_archived: false,
-    call_type: 'voicemail',
-    created_at: '2025-03-01T12:30:00.000Z',
-    direction: 'outbound'
-  }
-] as const
-
-// Mock API function
-const fetchCalls = async () => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  
-  // Simulate API response
-  return [...mockCalls]
+// Define Call type
+export type Call = {
+  id: string
+  created_at: string
+  direction: 'inbound' | 'outbound'
+  from: string
+  to: string
+  via: string
+  duration: number
+  is_archived: boolean
+  call_type: 'missed' | 'answered' | 'voicemail'
 }
 
-export type Call = typeof mockCalls[number]
+const fetchCalls = async () => {
+  const response = await fetch(`${config.apiUrl}/activities`)
+  
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`)
+  }
+  
+  return await response.json()
+  
+}
+
+
 
 export function useCalls() {
   return useQuery({

@@ -1,16 +1,6 @@
 import { useState } from 'react'
 import './CallList.css'
-
-type Call = {
-  id: string
-  from: string
-  to: string
-  duration: number
-  is_archived: boolean
-  call_type: 'missed' | 'answered' | 'voicemail'
-  created_at: string
-  direction: 'inbound' | 'outbound'
-}
+import { Call } from './useCalls'
 
 interface CallListProps {
   calls?: Call[]

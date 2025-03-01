@@ -11,7 +11,8 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "type-check": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fix-all": "bun run lint:fix && bun run format"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.66.11",
@@ -29,6 +30,7 @@
     "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^15.15.0",
     "prettier": "^3.5.2",
     "typescript": "~5.7.2",
