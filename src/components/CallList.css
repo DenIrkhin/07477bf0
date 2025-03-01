@@ -1,0 +1,115 @@
+.call-list {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.call-list h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.call-list-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.call-list-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 4px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.call-list-item:last-child {
+  border-bottom: none;
+}
+
+.call-list-item:hover {
+  background-color: #f9f9f9;
+}
+
+.call-list-item.archived {
+  background-color: #f5f5f5;
+  color: #777;
+}
+
+.call-list-item.selected {
+  background-color: #e6f7ff;
+}
+
+.call-direction {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  color: #555;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.call-from {
+  grid-column: 2;
+  grid-row: 1;
+  font-weight: bold;
+}
+
+.call-to {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.call-via {
+  grid-column: 2;
+  grid-row: 3;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.call-time {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.call-type {
+  grid-column: 3;
+  grid-row: 2 / span 2;
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.call-type.missed {
+  color: #e74c3c;
+}
+
+.call-type.answered {
+  color: #2ecc71;
+}
+
+.call-type.voicemail {
+  color: #f39c12;
+}
+
+.call-list-loading,
+.call-list-error,
+.call-list-empty {
+  padding: 24px 16px;
+  text-align: center;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}

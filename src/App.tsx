@@ -1,6 +1,6 @@
 import './App.css'
 import { CallList } from '@components/CallList'
-import { useCalls } from '@components/CallList/useCalls'
+import { useCalls } from '@hooks/useCalls'
 
 function App() {
   const { data: calls, isLoading, error } = useCalls()

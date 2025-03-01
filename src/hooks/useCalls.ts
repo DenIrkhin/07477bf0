@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { config } from '@config/env'
 
-// Define Call type
 export type Call = {
   id: string
   created_at: string
@@ -22,10 +21,7 @@ const fetchCalls = async () => {
   }
   
   return await response.json()
-  
 }
-
-
 
 export function useCalls() {
   return useQuery({
