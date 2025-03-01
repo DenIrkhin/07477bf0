@@ -64,12 +64,24 @@ For the best development experience, install the [Prettier VS Code extension](ht
 
 This project includes GitHub Actions workflows to automatically check code quality on pull requests:
 
-- **Code Quality Checks**: Runs on all pull requests to main, master, and develop branches
+- **Code Quality Checks**: Runs on all pull requests to main branch
   - Formatting verification with Prettier
   - Linting with ESLint
   - Type checking with TypeScript
+  - Uses concurrency controls to cancel outdated runs when new commits are pushed
 
 The workflow configuration is located in `.github/workflows/check.yml`.
+
+### Dependabot
+
+This project uses Dependabot to keep dependencies up-to-date. Dependabot is configured to:
+
+- Check for npm package updates daily
+- Check for GitHub Actions updates daily
+- Group related dependencies for more efficient updates
+- Label PRs appropriately
+
+The configuration is located in `.github/dependabot.yml`.
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
