@@ -1,6 +1,8 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Check](https://github.com/[owner]/451speer-fe-aircall/actions/workflows/check.yml/badge.svg)
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules with Prettier integration for consistent code formatting.
 
 Currently, two official plugins are available:
 
@@ -30,6 +32,44 @@ export default tseslint.config({
   },
 })
 ```
+
+## Code Formatting with Prettier
+
+This project uses Prettier for code formatting. Prettier is configured to work with ESLint to ensure consistent code style.
+
+### Configuration
+
+- `.prettierrc` - Contains Prettier configuration
+- `.prettierignore` - Lists files that should be ignored by Prettier
+- ESLint is configured to use `eslint-config-prettier` to avoid conflicts with Prettier rules
+
+### Available Scripts
+
+- `bun run format` - Format all files with Prettier
+- `bun run format:check` - Check if files are properly formatted
+- `bun run lint:fix` - Run ESLint with automatic fixes
+
+### VS Code Integration
+
+For the best development experience, install the [Prettier VS Code extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and enable format on save in your settings:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+```
+
+## Continuous Integration with GitHub Actions
+
+This project includes GitHub Actions workflows to automatically check code quality on pull requests:
+
+- **Code Quality Checks**: Runs on all pull requests to main, master, and develop branches
+  - Formatting verification with Prettier
+  - Linting with ESLint
+  - Type checking with TypeScript
+
+The workflow configuration is located in `.github/workflows/check.yml`.
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
