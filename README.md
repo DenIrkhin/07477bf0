@@ -68,6 +68,7 @@ This project includes GitHub Actions workflows to automatically check code quali
   - Formatting verification with Prettier
   - Linting with ESLint
   - Type checking with TypeScript
+  - Uses concurrency controls to cancel outdated runs when new commits are pushed
 
 The workflow configuration is located in `.github/workflows/check.yml`.
 
