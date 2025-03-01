@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules with Prettier integration for consistent code formatting.
 
 Currently, two official plugins are available:
 
@@ -29,6 +29,33 @@ export default tseslint.config({
     },
   },
 })
+```
+
+## Code Formatting with Prettier
+
+This project uses Prettier for code formatting. Prettier is configured to work with ESLint to ensure consistent code style.
+
+### Configuration
+
+- `.prettierrc` - Contains Prettier configuration
+- `.prettierignore` - Lists files that should be ignored by Prettier
+- ESLint is configured to use `eslint-config-prettier` to avoid conflicts with Prettier rules
+
+### Available Scripts
+
+- `bun run format` - Format all files with Prettier
+- `bun run format:check` - Check if files are properly formatted
+- `bun run lint:fix` - Run ESLint with automatic fixes
+
+### VS Code Integration
+
+For the best development experience, install the [Prettier VS Code extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and enable format on save in your settings:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
