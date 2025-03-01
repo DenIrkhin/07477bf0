@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './CallList.css'
-import { Call } from '@hooks/useCalls'
+import { Call, CallType, Direction } from '@hooks/useCalls'
 
 interface CallListProps {
   calls?: Call[]
@@ -37,10 +37,10 @@ export function CallList({ calls = [], isLoading = false, error = null }: CallLi
             key={call.id}
             className={`call-list-item ${call.is_archived ? 'archived' : ''} ${
               selectedCallId === call.id ? 'selected' : ''
-            }`}
+            } ${call.call_type}`} // The enum values already match the CSS class names
             onClick={() => setSelectedCallId(selectedCallId === call.id ? null : call.id)}
           >
-            <div className="call-direction">{call.direction === 'inbound' ? 'Incoming' : 'Outgoing'}</div>
+            <div className="call-direction">{call.direction === Direction.INBOUND ? 'Incoming' : 'Outgoing'}</div>
             <div className="call-from">{call.from}</div>
             <div className="call-to">to: {call.to}</div>
             <div className="call-via">via: {call.via}</div>

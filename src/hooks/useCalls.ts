@@ -1,16 +1,27 @@
 import { useQuery } from '@tanstack/react-query'
 import { config } from '@config/env'
 
+export enum CallType {
+  MISSED = 'missed',
+  ANSWERED = 'answered',
+  VOICEMAIL = 'voicemail'
+}
+
+export enum Direction {
+  INBOUND = 'inbound',
+  OUTBOUND = 'outbound'
+}
+
 export type Call = {
   id: string
   created_at: string
-  direction: 'inbound' | 'outbound'
+  direction: Direction
   from: string
   to: string
   via: string
   duration: number
   is_archived: boolean
-  call_type: 'missed' | 'answered' | 'voicemail'
+  call_type: CallType
 }
 
 const fetchCalls = async () => {

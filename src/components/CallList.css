@@ -24,6 +24,7 @@
   gap: 4px 16px;
   cursor: pointer;
   transition: background-color 0.2s;
+  position: relative;
 }
 
 .call-list-item:last-child {
@@ -41,6 +42,26 @@
 
 .call-list-item.selected {
   background-color: #e6f7ff;
+  border-left: 3px solid #1890ff;
+}
+
+/* Call type styling */
+.call-list-item {
+  /* Default left border */
+  border-left: 3px solid transparent;
+}
+
+/* Direct class styling for call types */
+.call-list-item.missed {
+  border-left: 3px solid #ff4d4f;
+}
+
+.call-list-item.answered {
+  border-left: 3px solid #52c41a;
+}
+
+.call-list-item.voicemail {
+  border-left: 3px solid #faad14;
 }
 
 .call-direction {
