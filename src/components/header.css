@@ -7,7 +7,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #f0f5ff;
+  background-color: var(--color-background-grey-one);
 }
 
 .header-left {
@@ -33,5 +33,5 @@ header img {
 header h1 {
   margin-left: 15px;
   font-size: 22px;
-  color: #333;
+  color: var(--color-text-cobalt);
 }

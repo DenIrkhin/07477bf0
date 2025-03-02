@@ -1,7 +1,7 @@
 import React from 'react'
 import './BottomAppBar.css'
 
-import phoneIcon from '@assets/icons/Green/Color=Green, Type=callback.svg'
+import phoneIcon from '@assets/icons/headset-dark.svg'
 import profileIcon from '@assets/icons/Dark/Color=Black, Type=profile.svg'
 import settingsIcon from '@assets/icons/Dark/Color=Black, Type=gear.svg'
 

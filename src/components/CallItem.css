@@ -26,15 +26,15 @@
 }
 
 .call-item.missed {
-  border-left: 4px solid #ff5d3e;
+  border-left: 4px solid var(--color-orange-brand);
 }
 
 .call-item.answered {
-  border-left: 4px solid #00bd82;
+  border-left: 4px solid var(--color-green-brand);
 }
 
 .call-item.voicemail {
-  border-left: 4px solid #ffc000;
+  border-left: 4px solid var(--color-yellow-brand);
 }
 
 /* Call icon */
