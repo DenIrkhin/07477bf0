@@ -19,22 +19,8 @@ export function CallList({
 }: CallListProps) {
   const [selectedCallId, setSelectedCallId] = useState<string | null>(null)
 
-  if (isLoading) {
-    return <div className="call-list-loading">Loading calls...</div>
-  }
-
-  if (error) {
-    return <div className="call-list-error">Error loading calls: {error.message}</div>
-  }
-
   // Filter calls based on isArchived prop
   const filteredCalls = calls.filter((call) => call.is_archived === isArchived)
-
-  if (filteredCalls.length === 0) {
-    return (
-      <div className="call-list-empty">No {isArchived ? 'archived' : 'active'} calls found</div>
-    )
-  }
 
   // Group calls by date
   const groupedCalls = useMemo(() => {
@@ -58,6 +44,20 @@ export function CallList({
 
     return groups
   }, [filteredCalls])
+
+  if (isLoading) {
+    return <div className="call-list-loading">Loading calls...</div>
+  }
+
+  if (error) {
+    return <div className="call-list-error">Error loading calls: {error.message}</div>
+  }
+
+  if (filteredCalls.length === 0) {
+    return (
+      <div className="call-list-empty">No {isArchived ? 'archived' : 'active'} calls found</div>
+    )
+  }
 
   const handleCallSelect = (callId: string) => {
     setSelectedCallId(selectedCallId === callId ? null : callId)
