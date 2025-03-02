@@ -1,5 +1,17 @@
+@font-face {
+  /* https://displaay.net/typeface/fellix/ */
+  font-family: 'Fellix';
+  src: url('./assets/FellixTRIAL-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Brand Colors */
+  --color-greenbrand: #00bd82;
+
+  font-family: 'Fellix', 'Sen', system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 

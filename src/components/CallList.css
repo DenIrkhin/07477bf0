@@ -1,0 +1,146 @@
+.call-list {
+  width: 100%;
+}
+
+.call-list h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.call-list-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.call-list-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto;
+  gap: 4px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+}
+
+.call-list-item:last-child {
+  border-bottom: none;
+}
+
+.call-list-item:hover {
+  background-color: #f9f9f9;
+}
+
+.call-list-item.archived {
+  background-color: #f5f5f5;
+  color: #777;
+}
+
+.call-list-item.selected {
+  background-color: #e6f7ff;
+  border-left: 3px solid #1890ff;
+}
+
+/* Call type styling */
+.call-list-item {
+  /* Default left border */
+  border-left: 3px solid transparent;
+}
+
+/* Direct class styling for call types */
+.call-list-item.missed {
+  border-left: 3px solid #ff4d4f;
+}
+
+.call-list-item.answered {
+  border-left: 3px solid #52c41a;
+}
+
+.call-list-item.voicemail {
+  border-left: 3px solid #faad14;
+}
+
+.call-direction {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  color: #555;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.call-from {
+  grid-column: 2;
+  grid-row: 1;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.call-to {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.9rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.call-via {
+  grid-column: 2;
+  grid-row: 3;
+  font-size: 0.8rem;
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.call-time {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
+  font-size: 0.9rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+.call-type {
+  grid-column: 3;
+  grid-row: 2 / span 2;
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  white-space: nowrap;
+  min-width: 70px;
+}
+
+.call-type.missed {
+  color: #e74c3c;
+}
+
+.call-type.answered {
+  color: #2ecc71;
+}
+
+.call-type.voicemail {
+  color: #f39c12;
+}
+
+.call-list-loading,
+.call-list-error,
+.call-list-empty {
+  padding: 24px 16px;
+  text-align: center;
+  color: #666;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}

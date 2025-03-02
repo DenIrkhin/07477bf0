@@ -83,6 +83,56 @@ This project uses Dependabot to keep dependencies up-to-date. Dependabot is conf
 
 The configuration is located in `.github/dependabot.yml`.
 
+## Path Aliases
+
+This project uses TypeScript path aliases to make imports cleaner and more maintainable. The following aliases are available:
+
+| Alias           | Path               | Description                          |
+| --------------- | ------------------ | ------------------------------------ |
+| `@/*`           | `src/*`            | Access any file in the src directory |
+| `@components/*` | `src/components/*` | Access UI components                 |
+| `@providers/*`  | `src/providers/*`  | Access context providers             |
+| `@config/*`     | `src/config/*`     | Access configuration files           |
+| `@hooks/*`      | `src/hooks/*`      | Access custom hooks                  |
+| `@utils/*`      | `src/utils/*`      | Access utility functions             |
+| `@assets/*`     | `src/assets/*`     | Access assets like images and fonts  |
+
+Usage example:
+
+```typescript
+// Instead of this:
+import { myFunction } from '../../utils/helpers'
+
+// Use this:
+import { myFunction } from '@utils/helpers'
+```
+
+## Environment Variables
+
+This project uses environment variables for configuration. These are managed through `.env` files:
+
+- `.env` - Default environment variables (committed to the repository)
+- `.env.local` - Local overrides (not committed to the repository)
+- `.env.development` - Development-specific variables (committed)
+- `.env.production` - Production-specific variables (committed)
+
+### Available Environment Variables
+
+| Variable     | Description                 |
+| ------------ | --------------------------- |
+| VITE_API_URL | The URL for the Aircall API |
+
+### Usage in Code
+
+Environment variables are accessed through the config object defined in `src/config/env.ts`:
+
+```typescript
+import { config } from '../config/env'
+
+// Use the API URL
+fetch(`${config.apiUrl}/endpoint`)
+```
+
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
