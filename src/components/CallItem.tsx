@@ -76,25 +76,33 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
         <div className="call-status">{call.call_type.toUpperCase()}</div>
       </div>
       {!call.is_archived && onArchive && (
-        <button 
-          className="call-archive-button" 
+        <button
+          className="call-archive-button"
           onClick={(e) => {
-            e.stopPropagation(); // Prevent triggering the parent onClick
-            onArchive(call.id);
+            e.stopPropagation() // Prevent triggering the parent onClick
+            onArchive(call.id)
           }}
         >
-          <img src={archiveIcon} alt="Archive" className="archive-icon" />
+          <img
+            src={archiveIcon}
+            alt="Archive"
+            className="archive-icon"
+          />
         </button>
       )}
       {call.is_archived && onArchive && (
-        <button 
-          className="call-archive-button" 
+        <button
+          className="call-archive-button"
           onClick={(e) => {
-            e.stopPropagation(); // Prevent triggering the parent onClick
-            onArchive(call.id);
+            e.stopPropagation() // Prevent triggering the parent onClick
+            onArchive(call.id)
           }}
         >
-          <img src={unarchiveIcon} alt="Unarchive" className="archive-icon" />
+          <img
+            src={unarchiveIcon}
+            alt="Unarchive"
+            className="archive-icon"
+          />
         </button>
       )}
     </div>

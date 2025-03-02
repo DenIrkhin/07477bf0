@@ -57,12 +57,12 @@ const fetchCalls = async () => {
 
 export function useCalls() {
   const queryClient = useQueryClient()
-  
+
   const toggleArchiveCall = async (callId: string) => {
     // In a real app, this would be an API call
     // For now, we'll just simulate it
     console.log(`Toggling archive status for call ${callId}`)
-    
+
     // Simulate API call
     return new Promise<void>((resolve) => {
       setTimeout(() => {
@@ -71,21 +71,21 @@ export function useCalls() {
           ['calls', { userId: CURRENT_USER_ID }],
           (oldData: CallWithContact[] | undefined) => {
             if (!oldData) return []
-            return oldData.map((call) => 
-              call.id === callId ? { ...call, is_archived: !call.is_archived } : call
+            return oldData.map((call) =>
+              call.id === callId ? { ...call, is_archived: !call.is_archived } : call,
             )
-          }
+          },
         )
         resolve()
       }, 300)
     })
   }
-  
+
   const archiveAllCalls = async () => {
     // In a real app, this would be an API call
     // For now, we'll just simulate it
     console.log('Archiving all calls')
-    
+
     // Simulate API call
     return new Promise<void>((resolve) => {
       setTimeout(() => {
@@ -94,26 +94,26 @@ export function useCalls() {
           ['calls', { userId: CURRENT_USER_ID }],
           (oldData: CallWithContact[] | undefined) => {
             if (!oldData) return []
-            return oldData.map((call) => 
-              !call.is_archived ? { ...call, is_archived: true } : call
+            return oldData.map((call) =>
+              !call.is_archived ? { ...call, is_archived: true } : call,
             )
-          }
+          },
         )
         resolve()
       }, 300)
     })
   }
-  
+
   const { mutate: mutateToggleArchiveCall } = useMutation({
     mutationFn: toggleArchiveCall,
     // If we had a real API, we would add onError handling here
   })
-  
+
   const { mutate: mutateArchiveAllCalls } = useMutation({
     mutationFn: archiveAllCalls,
     // If we had a real API, we would add onError handling here
   })
-  
+
   return {
     data: useQuery({
       queryKey: ['calls', { userId: CURRENT_USER_ID }],
@@ -128,6 +128,6 @@ export function useCalls() {
       queryFn: fetchCalls,
     }).error,
     archiveCall: mutateToggleArchiveCall,
-    archiveAllCalls: mutateArchiveAllCalls
+    archiveAllCalls: mutateArchiveAllCalls,
   }
 }

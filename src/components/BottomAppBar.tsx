@@ -57,10 +57,10 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
           className="dialpad-button"
           onClick={onDialpadClick}
         >
-          <img 
-            src={dialpadIcon} 
-            alt="Dialpad" 
-            className="dialpad-icon-svg" 
+          <img
+            src={dialpadIcon}
+            alt="Dialpad"
+            className="dialpad-icon-svg"
           />
         </div>
 

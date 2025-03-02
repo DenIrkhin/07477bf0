@@ -11,7 +11,6 @@
 }
 
 .container {
-  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding: 0 16px;
@@ -21,23 +20,27 @@
 .app-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  max-height: 100vh;
   box-sizing: border-box;
   overflow: hidden !important;
+  position: relative;
 }
 
 .calls-container {
-  flex: 1;
+  flex: none;
   display: flex;
   flex-direction: column;
-  min-height: 100px;
-  max-height: calc(100vh - 186px); /* Adjusted to account for bottom bar */
+  height: calc(100vh - 158px);
   overflow: hidden;
-  margin-bottom: 56px; /* Height of the bottom app bar */
-  padding-bottom: 8px; /* Add some padding between content and bottom bar */
+  margin: 1rem 0 56px 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+/* Coming soon styles moved to TabContent.css */
 
 .logo {
   height: 6em;

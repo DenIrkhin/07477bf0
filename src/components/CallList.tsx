@@ -79,11 +79,15 @@ export function CallList({
       <div className="call-list-container">
         {!isArchived && (
           <div className="archive-all-container">
-            <button 
+            <button
               className="archive-all-button"
               onClick={handleArchiveAll}
             >
-              <img src={archiveIcon} alt="Archive" className="archive-icon" />
+              <img
+                src={archiveIcon}
+                alt="Archive"
+                className="archive-icon"
+              />
               <span>Archive all calls</span>
             </button>
           </div>

@@ -2,49 +2,125 @@
   display: flex;
   position: relative;
   background-color: transparent;
-  overflow: hidden;
   width: 100%;
-  max-width: 450px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  table-layout: fixed;
 }
 
 .header-tab {
-  flex: 1;
-  padding: 0.5rem 1.5rem;
-  min-width: 80px;
-  font-size: 1rem;
+  flex: 0 0 33.333%;
+  width: 33.333%;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
   font-weight: 500;
   text-align: center;
-  color: #666;
+  color: var(--color-text-cobalt);
   background: none;
   border: none;
   outline: none;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: background-color 0.2s ease;
   position: relative;
   white-space: nowrap;
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.header-tab:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.header-tab:focus-visible {
+  outline: none;
 }
 
 .header-tab:hover {
-  color: #333;
+  color: var(--color-text-cobalt);
+  opacity: 0.9;
+  background-color: var(--color-background-grey-three);
 }
 
 .header-tab.active {
-  color: #000;
+  color: var(--color-text-cobalt);
   font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-background-white);
+  border: none !important;
+  outline: none !important;
+}
+
+/* Override browser default focus styles */
+.header-tab::-moz-focus-inner {
+  border: 0;
+}
+
+/* Additional focus override for WebKit browsers */
+.header-tab:focus {
+  outline: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .header-tab.active::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 25%;
+  width: 50%;
   height: 3px;
-  background-color: #ff5722;
-  border-radius: 3px 3px 0 0;
+  background-color: var(--color-orange-brand);
+  border-radius: 0;
 }
 
-/* Center the tabs content */
-.header-tabs {
+/* Distribute the tabs content */
+.header-tabs-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 48px;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Style for tab icons */
+.header-tab-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* Tab content wrapper */
+.tab-content {
+  display: flex;
+  align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Add margin to icon when there's text */
+.header-tab span {
+  margin-left: 4px;
+  letter-spacing: -0.2px;
+}
+
+/* Center icon-only tab */
+.header-tab:not(:has(span)) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
 }
