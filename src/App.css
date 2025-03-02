@@ -3,6 +3,11 @@
   margin: 0 auto;
   padding: 0;
   text-align: center;
+  height: 100%;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden !important;
 }
 
 .container {
@@ -11,6 +16,24 @@
   margin: 0 auto;
   padding: 0 16px;
   box-sizing: border-box;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden !important;
+}
+
+.calls-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  max-height: calc(100vh - 130px);
+  overflow: hidden;
 }
 
 .logo {

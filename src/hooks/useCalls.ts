@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { config } from '@config/env'
-
-// Define user ID constant
-export const MY_USER_ID = 2
+import { CURRENT_USER_ID, getContactById, Contact } from '@content/crm'
 
 export enum CallType {
   MISSED = 'missed',
@@ -27,6 +25,11 @@ export type Call = {
   call_type: CallType
 }
 
+export type CallWithContact = Call & {
+  fromContact?: Contact
+  toContact?: Contact
+}
+
 const fetchCalls = async () => {
   const response = await fetch(`${config.apiUrl}/activities`)
 
@@ -36,18 +39,25 @@ const fetchCalls = async () => {
 
   const data = await response.json()
 
-  // Filter calls where from or to equals MY_USER_ID
+  // Filter calls where from or to equals CURRENT_USER_ID
   // as an alternative we could use `select` options in useQuery, but this way we keep all unnecessary data in cache, so it's better to filter on data fetch
   const filteredCalls = data.filter(
-    (call: Call) => call.from === MY_USER_ID || call.to === MY_USER_ID,
+    (call: Call) => call.from === CURRENT_USER_ID || call.to === CURRENT_USER_ID,
   )
 
-  return filteredCalls
+  // Enrich calls with contact information
+  const enrichedCalls = filteredCalls.map((call: Call) => ({
+    ...call,
+    fromContact: getContactById(call.from),
+    toContact: getContactById(call.to),
+  }))
+
+  return enrichedCalls
 }
 
 export function useCalls() {
   return useQuery({
-    queryKey: ['calls', { userId: MY_USER_ID }],
+    queryKey: ['calls', { userId: CURRENT_USER_ID }],
     queryFn: fetchCalls,
   })
 }
