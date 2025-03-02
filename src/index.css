@@ -1,17 +1,65 @@
+/* Fellix Font Family - https://displaay.net/typeface/fellix/ */
+
+/* Regular */
 @font-face {
-  /* https://displaay.net/typeface/fellix/ */
   font-family: 'Fellix';
-  src: url('./assets/FellixTRIAL-Regular.woff') format('woff');
-  font-weight: normal;
+  src: url('./assets/fonts/FellixTRIAL-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Medium */
+@font-face {
+  font-family: 'Fellix';
+  src: url('./assets/fonts/FellixTRIAL-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: 'Fellix';
+  src: url('./assets/fonts/FellixTRIAL-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'Fellix';
+  src: url('./assets/fonts/FellixTRIAL-Bold.woff2') format('woff2');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
   /* Brand Colors */
-  --color-greenbrand: #00bd82;
+  --color-green-brand: #00bd82;
+  --color-purple-brand: #6955da;
+  --color-blue-brand: #2f80ed;
+  --color-yellow-brand: #ffc000;
+  --color-pink-brand: #e85b79;
+  --color-orange-brand: #ff5d3e;
 
-  font-family: 'Fellix', 'Sen', system-ui, Helvetica, Arial, sans-serif;
+  /* Background Colors */
+  --color-background-cobalt: #012635;
+  --color-background-dark-blue: #073f56;
+  --color-background-white: #ffffff;
+  --color-background-grey-one: #fcfcff;
+  --color-background-grey-two: #f7f8fc;
+  --color-background-grey-three: #f1f3f8;
+
+  /* Text Colors */
+  --color-text-cobalt: #012635;
+  --color-text-dark-blue: #073f56;
+  --color-text-light-grey: #f7f8fc;
+  --color-text-white: #ffffff;
+
+  font-family: 'Fellix', 'Sen', system-ui, Helvetica, Arial, sans;
   line-height: 1.5;
   font-weight: 400;
 

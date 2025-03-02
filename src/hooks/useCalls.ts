@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { config } from '@config/env'
-
-// Define user ID constant
-export const MY_USER_ID = 2
+import { CURRENT_USER_ID } from '@content/crm'
 
 export enum CallType {
   MISSED = 'missed',
@@ -36,10 +34,10 @@ const fetchCalls = async () => {
 
   const data = await response.json()
 
-  // Filter calls where from or to equals MY_USER_ID
+  // Filter calls where from or to equals CURRENT_USER_ID
   // as an alternative we could use `select` options in useQuery, but this way we keep all unnecessary data in cache, so it's better to filter on data fetch
   const filteredCalls = data.filter(
-    (call: Call) => call.from === MY_USER_ID || call.to === MY_USER_ID,
+    (call: Call) => call.from === CURRENT_USER_ID || call.to === CURRENT_USER_ID,
   )
 
   return filteredCalls
@@ -47,7 +45,7 @@ const fetchCalls = async () => {
 
 export function useCalls() {
   return useQuery({
-    queryKey: ['calls', { userId: MY_USER_ID }],
+    queryKey: ['calls', { userId: CURRENT_USER_ID }],
     queryFn: fetchCalls,
   })
 }
