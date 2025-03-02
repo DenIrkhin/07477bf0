@@ -25,6 +25,36 @@
   min-height: 100px;
 }
 
+.archive-all-container {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-background-grey-three);
+}
+
+.archive-all-button {
+  display: flex;
+  align-items: center;
+  background: var(--color-background-white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-cobalt);
+  width: 100%;
+  justify-content: flex-start;
+  transition: background-color 0.2s ease;
+}
+
+.archive-all-button:hover {
+  background-color: var(--color-background-grey-two);
+}
+
+.archive-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}
+
 /* These styles are now handled by CallItem.css */
 
 .call-list-loading,

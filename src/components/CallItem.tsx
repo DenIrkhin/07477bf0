@@ -1,14 +1,16 @@
 import React from 'react'
 import './CallItem.css'
 import { CallWithContact } from '@hooks/useCalls'
+import archiveIcon from '@assets/icons/Dark/Color=Black, Type=business-bag.svg'
 
 interface CallItemProps {
   call: CallWithContact
   isSelected: boolean
   onSelect: (callId: string) => void
+  onArchive?: (callId: string) => void
 }
 
-export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect }) => {
+export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, onArchive }) => {
   const formatTime = (dateString: string) => {
     const date = new Date(dateString)
     const hours = date.getHours()
@@ -72,6 +74,17 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect }
         <div className="call-time">{formatTime(call.created_at)}</div>
         <div className="call-status">{call.call_type.toUpperCase()}</div>
       </div>
+      {!call.is_archived && onArchive && (
+        <button 
+          className="call-archive-button" 
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent triggering the parent onClick
+            onArchive(call.id);
+          }}
+        >
+          <img src={archiveIcon} alt="Archive" className="archive-icon" />
+        </button>
+      )}
     </div>
   )
 }

@@ -3,12 +3,15 @@ import './CallList.css'
 import { CallWithContact } from '@hooks/useCalls'
 import { CallItem } from './CallItem'
 import { DateItem } from './DateItem'
+import archiveIcon from '@assets/icons/Dark/Color=Black, Type=business-bag.svg'
 
 interface CallListProps {
   calls?: CallWithContact[]
   isLoading?: boolean
   error?: Error | null
   isArchived?: boolean
+  onArchiveCall?: (callId: string) => void
+  onArchiveAllCalls?: () => void
 }
 
 export function CallList({
@@ -16,6 +19,8 @@ export function CallList({
   isLoading = false,
   error = null,
   isArchived = false,
+  onArchiveCall,
+  onArchiveAllCalls,
 }: CallListProps) {
   const [selectedCallId, setSelectedCallId] = useState<string | null>(null)
 
@@ -63,9 +68,26 @@ export function CallList({
     setSelectedCallId(selectedCallId === callId ? null : callId)
   }
 
+  const handleArchiveAll = () => {
+    if (onArchiveAllCalls) {
+      onArchiveAllCalls()
+    }
+  }
+
   return (
     <div className="call-list">
       <div className="call-list-container">
+        {!isArchived && (
+          <div className="archive-all-container">
+            <button 
+              className="archive-all-button"
+              onClick={handleArchiveAll}
+            >
+              <img src={archiveIcon} alt="Archive" className="archive-icon" />
+              <span>Archive all calls</span>
+            </button>
+          </div>
+        )}
         {Object.entries(groupedCalls).map(([date, callsForDate]) => (
           <div
             key={date}
@@ -78,6 +100,7 @@ export function CallList({
                 call={call}
                 isSelected={selectedCallId === call.id}
                 onSelect={handleCallSelect}
+                onArchive={onArchiveCall}
               />
             ))}
           </div>

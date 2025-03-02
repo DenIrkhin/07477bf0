@@ -7,7 +7,7 @@ import { HeaderTabs, Tab } from '@components/HeaderTabs'
 import { BottomAppBar } from '@components/BottomAppBar'
 
 export function App() {
-  const { data: calls, isLoading, error } = useCalls()
+  const { data: calls, isLoading, error, archiveCall, archiveAllCalls } = useCalls()
   const [activeTab, setActiveTab] = useState<Tab['id']>('inbox')
 
   const tabs: Tab[] = [
@@ -35,6 +35,8 @@ export function App() {
           isLoading={isLoading}
           error={error as Error | null}
           isArchived={activeTab === 'archived'}
+          onArchiveCall={archiveCall}
+          onArchiveAllCalls={archiveAllCalls}
         />
       </div>
       <BottomAppBar 
