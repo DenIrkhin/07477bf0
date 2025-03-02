@@ -5,14 +5,12 @@
   background-color: var(--color-background-white);
   height: 56px;
   width: 100%;
-  bottom: 0;
-  left: 0;
-  right: 0;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
   z-index: 100;
   padding: 0;
   box-sizing: border-box;
   border-radius: 0;
+  margin-top: auto;
 }
 
 .bottom-app-bar-content {

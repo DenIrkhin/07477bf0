@@ -2,14 +2,16 @@
   display: flex;
   align-items: center;
   padding: 16px;
-  border-bottom: 1px solid #eee;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   cursor: pointer;
   position: relative;
   transition: background-color 0.2s;
+  margin-bottom: 10px;
 }
 
 .call-item:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .call-item:hover {
