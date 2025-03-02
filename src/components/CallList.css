@@ -10,6 +10,11 @@
   color: #333;
 }
 
+.call-date-group {
+  display: flex;
+  flex-direction: column;
+}
+
 .call-list-container {
   border: 1px solid #ddd;
   border-radius: 8px;

@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import './CallList.css'
 import { CallWithContact } from '@hooks/useCalls'
 import { CallItem } from './CallItem'
+import { DateItem } from './DateItem'
 
 interface CallListProps {
   calls?: CallWithContact[]
@@ -35,10 +36,28 @@ export function CallList({
     )
   }
 
-  function formatDate(dateString: string) {
-    const date = new Date(dateString)
-    return date.toLocaleString()
-  }
+  // Group calls by date
+  const groupedCalls = useMemo(() => {
+    const groups: Record<string, CallWithContact[]> = {}
+
+    // Sort calls by date (newest first)
+    const sortedCalls = [...filteredCalls].sort(
+      (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+    )
+
+    sortedCalls.forEach((call) => {
+      // Extract date part (YYYY-MM-DD) from ISO string
+      const dateOnly = call.created_at.split('T')[0]
+
+      if (!groups[dateOnly]) {
+        groups[dateOnly] = []
+      }
+
+      groups[dateOnly].push(call)
+    })
+
+    return groups
+  }, [filteredCalls])
 
   const handleCallSelect = (callId: string) => {
     setSelectedCallId(selectedCallId === callId ? null : callId)
@@ -47,13 +66,21 @@ export function CallList({
   return (
     <div className="call-list">
       <div className="call-list-container">
-        {filteredCalls.map((call) => (
-          <CallItem
-            key={call.id}
-            call={call}
-            isSelected={selectedCallId === call.id}
-            onSelect={handleCallSelect}
-          />
+        {Object.entries(groupedCalls).map(([date, callsForDate]) => (
+          <div
+            key={date}
+            className="call-date-group"
+          >
+            <DateItem date={date} />
+            {callsForDate.map((call) => (
+              <CallItem
+                key={call.id}
+                call={call}
+                isSelected={selectedCallId === call.id}
+                onSelect={handleCallSelect}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </div>
