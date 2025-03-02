@@ -4,6 +4,7 @@ import './BottomAppBar.css'
 import phoneIcon from '@assets/icons/headset-dark.svg'
 import profileIcon from '@assets/icons/Dark/Color=Black, Type=profile.svg'
 import settingsIcon from '@assets/icons/Dark/Color=Black, Type=gear.svg'
+import dialpadIcon from '@assets/icons/dialpad.svg'
 
 interface BottomAppBarProps {
   missedCalls?: number
@@ -56,17 +57,11 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
           className="dialpad-button"
           onClick={onDialpadClick}
         >
-          <div className="dialpad-icon">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-          </div>
+          <img 
+            src={dialpadIcon} 
+            alt="Dialpad" 
+            className="dialpad-icon-svg" 
+          />
         </div>
 
         <div
