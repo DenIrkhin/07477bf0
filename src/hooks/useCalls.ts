@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { config } from '@config/env'
-import { CURRENT_USER_ID } from '@content/crm'
+import { CURRENT_USER_ID, getContactById, Contact } from '@content/crm'
 
 export enum CallType {
   MISSED = 'missed',
@@ -25,6 +25,11 @@ export type Call = {
   call_type: CallType
 }
 
+export type CallWithContact = Call & {
+  fromContact?: Contact
+  toContact?: Contact
+}
+
 const fetchCalls = async () => {
   const response = await fetch(`${config.apiUrl}/activities`)
 
@@ -40,7 +45,14 @@ const fetchCalls = async () => {
     (call: Call) => call.from === CURRENT_USER_ID || call.to === CURRENT_USER_ID,
   )
 
-  return filteredCalls
+  // Enrich calls with contact information
+  const enrichedCalls = filteredCalls.map((call: Call) => ({
+    ...call,
+    fromContact: getContactById(call.from),
+    toContact: getContactById(call.to)
+  }))
+
+  return enrichedCalls
 }
 
 export function useCalls() {

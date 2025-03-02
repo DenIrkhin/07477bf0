@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import './CallList.css'
-import { Call, Direction } from '@hooks/useCalls'
+import { CallWithContact, Direction } from '@hooks/useCalls'
 
 interface CallListProps {
-  calls?: Call[]
+  calls?: CallWithContact[]
   isLoading?: boolean
   error?: Error | null
 }
@@ -42,8 +42,8 @@ export function CallList({ calls = [], isLoading = false, error = null }: CallLi
             <div className="call-direction">
               {call.direction === Direction.INBOUND ? 'Incoming' : 'Outgoing'}
             </div>
-            <div className="call-from">{call.from}</div>
-            <div className="call-to">to: {call.to}</div>
+            <div className="call-from">{call.fromContact?.name || call.from}</div>
+            <div className="call-to">to: {call.toContact?.name || call.to}</div>
             <div className="call-via">via: {call.via}</div>
             <div className="call-time">{formatDate(call.created_at)}</div>
             <div className={`call-type ${call.call_type}`}>{call.call_type}</div>
