@@ -8,13 +8,14 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: var(--color-background-grey-one);
+  box-sizing: border-box;
 }
 
 .header-left {
   display: flex;
   align-items: center;
   min-width: 160px;
-  margin-left: 20px;
+  margin-left: 0;
 }
 
 .header-right {

@@ -28,7 +28,7 @@ export function App() {
   return (
     <div className="app-wrapper">
       {/* Fixed header section */}
-      <div className="container">
+      <div className="header-container">
         <Header title="Activity">
           <HeaderTabs
             tabs={tabs}
@@ -38,7 +38,7 @@ export function App() {
         </Header>
       </div>
 
-      {/* Content section with fixed dimensions */}
+      {/* Content section */}
       <div className="container calls-container">
         <TabContent
           activeTab={activeTab}
