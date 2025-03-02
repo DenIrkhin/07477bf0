@@ -1,5 +1,8 @@
 .call-list {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .call-list h2 {
@@ -10,7 +13,11 @@
 .call-list-container {
   border: 1px solid #ddd;
   border-radius: 8px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  max-height: calc(100vh - 150px);
+  min-height: 100px;
 }
 
 .call-list-item {
@@ -143,4 +150,9 @@
   color: #666;
   border: 1px solid #ddd;
   border-radius: 8px;
+  min-height: 100px;
+  max-height: calc(100vh - 150px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -6,9 +6,10 @@ interface CallListProps {
   calls?: CallWithContact[]
   isLoading?: boolean
   error?: Error | null
+  isArchived?: boolean
 }
 
-export function CallList({ calls = [], isLoading = false, error = null }: CallListProps) {
+export function CallList({ calls = [], isLoading = false, error = null, isArchived = false }: CallListProps) {
   const [selectedCallId, setSelectedCallId] = useState<string | null>(null)
 
   if (isLoading) {
@@ -19,8 +20,11 @@ export function CallList({ calls = [], isLoading = false, error = null }: CallLi
     return <div className="call-list-error">Error loading calls: {error.message}</div>
   }
 
-  if (calls.length === 0) {
-    return <div className="call-list-empty">No calls found</div>
+  // Filter calls based on isArchived prop
+  const filteredCalls = calls.filter(call => call.is_archived === isArchived)
+
+  if (filteredCalls.length === 0) {
+    return <div className="call-list-empty">No {isArchived ? 'archived' : 'active'} calls found</div>
   }
 
   function formatDate(dateString: string) {
@@ -31,7 +35,7 @@ export function CallList({ calls = [], isLoading = false, error = null }: CallLi
   return (
     <div className="call-list">
       <div className="call-list-container">
-        {calls.map((call) => (
+        {filteredCalls.map((call) => (
           <div
             key={call.id}
             className={`call-list-item ${call.is_archived ? 'archived' : ''} ${
