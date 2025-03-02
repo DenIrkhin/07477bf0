@@ -12,11 +12,7 @@ interface HeaderTabsProps {
   onTabChange?: (tabId: string) => void
 }
 
-export function HeaderTabs({ 
-  tabs, 
-  defaultActiveTab = tabs[0]?.id, 
-  onTabChange 
-}: HeaderTabsProps) {
+export function HeaderTabs({ tabs, defaultActiveTab = tabs[0]?.id, onTabChange }: HeaderTabsProps) {
   const [activeTab, setActiveTab] = useState(defaultActiveTab)
 
   const handleTabClick = (tabId: string) => {

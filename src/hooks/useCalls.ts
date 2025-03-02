@@ -49,7 +49,7 @@ const fetchCalls = async () => {
   const enrichedCalls = filteredCalls.map((call: Call) => ({
     ...call,
     fromContact: getContactById(call.from),
-    toContact: getContactById(call.to)
+    toContact: getContactById(call.to),
   }))
 
   return enrichedCalls
