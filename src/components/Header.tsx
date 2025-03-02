@@ -9,7 +9,10 @@ export interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
     <header>
-      <img src={aircallLogo} alt="Aircall Logo" />
+      <img
+        src={aircallLogo}
+        alt="Aircall Logo"
+      />
       {title && <h1>{title}</h1>}
     </header>
   )

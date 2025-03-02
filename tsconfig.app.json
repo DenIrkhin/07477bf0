@@ -28,8 +28,8 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": false, /* Disabled in favor of ESLint's more configurable rule */
-    "noUnusedParameters": false, /* Disabled in favor of ESLint's more configurable rule */
+    "noUnusedLocals": false /* Disabled in favor of ESLint's more configurable rule */,
+    "noUnusedParameters": false /* Disabled in favor of ESLint's more configurable rule */,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },

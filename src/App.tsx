@@ -12,10 +12,20 @@ export function App() {
       <div className="container">
         <Header title="Aircall App" />
       </div>
-      <div className="container" style={{ marginTop: '2rem' }}>
-        <CallList calls={calls} isLoading={isLoading} error={error as Error | null} />
+      <div
+        className="container"
+        style={{ marginTop: '2rem' }}
+      >
+        <CallList
+          calls={calls}
+          isLoading={isLoading}
+          error={error as Error | null}
+        />
       </div>
-      <div className="container" style={{ marginTop: '2rem' }}>
+      <div
+        className="container"
+        style={{ marginTop: '2rem' }}
+      >
         <h2>Icons Demo (Prototype)</h2>
         <IconsDemo />
       </div>

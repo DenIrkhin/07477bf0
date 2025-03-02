@@ -29,20 +29,20 @@ export default tseslint.config(
       // Turn off the base rule as it can report incorrect errors
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
-      
+
       // Rules for both unused imports and variables
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
         'error',
-        { 
-          'vars': 'all', 
-          'varsIgnorePattern': '^_', 
-          'args': 'after-used', 
-          'argsIgnorePattern': '^_',
-          'destructuredArrayIgnorePattern': '^_',
-          'ignoreRestSiblings': true
-        }
-      ]
+        {
+          vars: 'all',
+          varsIgnorePattern: '^_',
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   },
   // Add Prettier as the last configuration to override other formatting rules

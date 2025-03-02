@@ -87,15 +87,15 @@ The configuration is located in `.github/dependabot.yml`.
 
 This project uses TypeScript path aliases to make imports cleaner and more maintainable. The following aliases are available:
 
-| Alias          | Path                 | Description                             |
-|----------------|----------------------|-----------------------------------------|
-| `@/*`          | `src/*`              | Access any file in the src directory    |
-| `@components/*`| `src/components/*`   | Access UI components                    |
-| `@providers/*` | `src/providers/*`    | Access context providers                |
-| `@config/*`    | `src/config/*`       | Access configuration files              |
-| `@hooks/*`     | `src/hooks/*`        | Access custom hooks                     |
-| `@utils/*`     | `src/utils/*`        | Access utility functions                |
-| `@assets/*`    | `src/assets/*`       | Access assets like images and fonts     |
+| Alias           | Path               | Description                          |
+| --------------- | ------------------ | ------------------------------------ |
+| `@/*`           | `src/*`            | Access any file in the src directory |
+| `@components/*` | `src/components/*` | Access UI components                 |
+| `@providers/*`  | `src/providers/*`  | Access context providers             |
+| `@config/*`     | `src/config/*`     | Access configuration files           |
+| `@hooks/*`      | `src/hooks/*`      | Access custom hooks                  |
+| `@utils/*`      | `src/utils/*`      | Access utility functions             |
+| `@assets/*`     | `src/assets/*`     | Access assets like images and fonts  |
 
 Usage example:
 
@@ -118,9 +118,9 @@ This project uses environment variables for configuration. These are managed thr
 
 ### Available Environment Variables
 
-| Variable      | Description                          |
-|---------------|--------------------------------------|
-| VITE_API_URL  | The URL for the Aircall API          |
+| Variable     | Description                 |
+| ------------ | --------------------------- |
+| VITE_API_URL | The URL for the Aircall API |
 
 ### Usage in Code
 

@@ -6,7 +6,7 @@
 
 export const config = {
   apiUrl: import.meta.env.VITE_API_URL as string,
-  
+
   // Add other environment variables here as needed
   isDevelopment: import.meta.env.DEV,
   isProduction: import.meta.env.PROD,
