@@ -58,10 +58,10 @@ const fetchCalls = async () => {
 export function useCalls() {
   const queryClient = useQueryClient()
   
-  const archiveCall = async (callId: string) => {
+  const toggleArchiveCall = async (callId: string) => {
     // In a real app, this would be an API call
     // For now, we'll just simulate it
-    console.log(`Archiving call ${callId}`)
+    console.log(`Toggling archive status for call ${callId}`)
     
     // Simulate API call
     return new Promise<void>((resolve) => {
@@ -72,7 +72,7 @@ export function useCalls() {
           (oldData: CallWithContact[] | undefined) => {
             if (!oldData) return []
             return oldData.map((call) => 
-              call.id === callId ? { ...call, is_archived: true } : call
+              call.id === callId ? { ...call, is_archived: !call.is_archived } : call
             )
           }
         )
@@ -104,8 +104,8 @@ export function useCalls() {
     })
   }
   
-  const { mutate: mutateArchiveCall } = useMutation({
-    mutationFn: archiveCall,
+  const { mutate: mutateToggleArchiveCall } = useMutation({
+    mutationFn: toggleArchiveCall,
     // If we had a real API, we would add onError handling here
   })
   
@@ -127,7 +127,7 @@ export function useCalls() {
       queryKey: ['calls', { userId: CURRENT_USER_ID }],
       queryFn: fetchCalls,
     }).error,
-    archiveCall: mutateArchiveCall,
+    archiveCall: mutateToggleArchiveCall,
     archiveAllCalls: mutateArchiveAllCalls
   }
 }

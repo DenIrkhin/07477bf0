@@ -2,6 +2,7 @@ import React from 'react'
 import './CallItem.css'
 import { CallWithContact } from '@hooks/useCalls'
 import archiveIcon from '@assets/icons/Dark/Color=Black, Type=business-bag.svg'
+import unarchiveIcon from '@assets/icons/Dark/Color=Black, Type=folder.svg'
 
 interface CallItemProps {
   call: CallWithContact
@@ -83,6 +84,17 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
           }}
         >
           <img src={archiveIcon} alt="Archive" className="archive-icon" />
+        </button>
+      )}
+      {call.is_archived && onArchive && (
+        <button 
+          className="call-archive-button" 
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent triggering the parent onClick
+            onArchive(call.id);
+          }}
+        >
+          <img src={unarchiveIcon} alt="Unarchive" className="archive-icon" />
         </button>
       )}
     </div>
