@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 450px;
   margin: 0 auto;
   padding: 0;
   text-align: center;
@@ -22,6 +22,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   max-height: 100vh;
   box-sizing: border-box;
   overflow: hidden !important;
@@ -32,8 +33,10 @@
   display: flex;
   flex-direction: column;
   min-height: 100px;
-  max-height: calc(100vh - 130px);
+  max-height: calc(100vh - 186px); /* Adjusted to account for bottom bar */
   overflow: hidden;
+  margin-bottom: 56px; /* Height of the bottom app bar */
+  padding-bottom: 8px; /* Add some padding between content and bottom bar */
 }
 
 .logo {

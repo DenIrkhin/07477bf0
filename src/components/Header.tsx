@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import './header.css'
-import aircallLogo from '../assets/icons/aircall-logo.svg'
+import aircallLogo from '@assets/icons/aircall-logo.svg'
 
 export interface HeaderProps {
   title?: string

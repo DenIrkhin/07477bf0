@@ -4,6 +4,7 @@ import { CallList } from '@components/CallList'
 import { useCalls } from '@hooks/useCalls'
 import { Header } from '@components/Header'
 import { HeaderTabs, Tab } from '@components/HeaderTabs'
+import { BottomAppBar } from '@components/BottomAppBar'
 
 export function App() {
   const { data: calls, isLoading, error } = useCalls()
@@ -36,6 +37,14 @@ export function App() {
           isArchived={activeTab === 'archived'}
         />
       </div>
+      <BottomAppBar 
+        missedCalls={12}
+        onPhoneClick={() => console.log('Phone clicked')}
+        onProfileClick={() => console.log('Profile clicked')}
+        onDialpadClick={() => console.log('Dialpad clicked')}
+        onSettingsClick={() => console.log('Settings clicked')}
+        onStatusClick={() => console.log('Status clicked')}
+      />
     </div>
   )
 }
