@@ -54,11 +54,21 @@
 }
 
 /* Staggered animation for multiple call groups */
-.call-date-group:nth-child(1) { animation-delay: 0.05s; }
-.call-date-group:nth-child(2) { animation-delay: 0.1s; }
-.call-date-group:nth-child(3) { animation-delay: 0.15s; }
-.call-date-group:nth-child(4) { animation-delay: 0.2s; }
-.call-date-group:nth-child(5) { animation-delay: 0.25s; }
+.call-date-group:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.call-date-group:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.call-date-group:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.call-date-group:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.call-date-group:nth-child(5) {
+  animation-delay: 0.25s;
+}
 
 .archive-all-container {
   padding: 12px 16px;

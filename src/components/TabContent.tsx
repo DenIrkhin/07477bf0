@@ -23,16 +23,16 @@ export function TabContent({
 }: TabContentProps) {
   // State to trigger animation
   const [animateKey, setAnimateKey] = useState(0)
-  
+
   // Update the animation key when tab changes to trigger animation
   useEffect(() => {
-    setAnimateKey(prev => prev + 1)
+    setAnimateKey((prev) => prev + 1)
   }, [activeTab])
   if (activeTab === 'tune') {
     return (
-      <div 
-        key={`tune-${animateKey}`} 
-        className="coming-soon-container" 
+      <div
+        key={`tune-${animateKey}`}
+        className="coming-soon-container"
         style={{ overflow: 'hidden', height: '100%', maxHeight: 'calc(100vh - 150px)' }}
       >
         <div className="coming-soon-message">
@@ -44,15 +44,15 @@ export function TabContent({
   }
 
   return (
-    <div 
-      key={`tab-${activeTab}-${animateKey}`} 
-      className="tab-content-enter" 
-      style={{ 
-        height: '100%', 
+    <div
+      key={`tab-${activeTab}-${animateKey}`}
+      className="tab-content-enter"
+      style={{
+        height: '100%',
         overflow: 'hidden',
         maxWidth: '100%',
         position: 'relative',
-        width: '100%'
+        width: '100%',
       }}
     >
       <CallList

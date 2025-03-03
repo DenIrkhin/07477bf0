@@ -10,7 +10,9 @@ import { TabContent } from '@components/TabContent'
 export function App() {
   const { data: calls, isLoading, error, archiveCall, archiveAllCalls } = useCalls()
   const [activeTab, setActiveTab] = useState<Tab['id']>('inbox')
-  const [bottomNavActive, setBottomNavActive] = useState<'phone' | 'profile' | 'dialpad' | 'settings' | 'status'>('phone')
+  const [bottomNavActive, setBottomNavActive] = useState<
+    'phone' | 'profile' | 'dialpad' | 'settings' | 'status'
+  >('phone')
 
   // Calculate missed calls count
   const missedCallsCount = useMemo(() => {

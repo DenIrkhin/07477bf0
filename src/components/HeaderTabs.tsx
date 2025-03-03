@@ -26,8 +26,8 @@ export function HeaderTabs({ tabs, defaultActiveTab = tabs[0]?.id, onTabChange }
   }
 
   // Get the index of the active tab for positioning the indicator
-  const activeTabIndex = tabs.findIndex(tab => tab.id === activeTab);
-  
+  const activeTabIndex = tabs.findIndex((tab) => tab.id === activeTab)
+
   return (
     <div className="header-tabs-container">
       <div className="header-tabs">
@@ -49,13 +49,13 @@ export function HeaderTabs({ tabs, defaultActiveTab = tabs[0]?.id, onTabChange }
             </div>
           </button>
         ))}
-        
+
         {/* Sliding indicator */}
-        <div 
-          className="tab-indicator" 
+        <div
+          className="tab-indicator"
           style={{
             width: `${100 / tabs.length}%`,
-            left: `${(100 / tabs.length) * activeTabIndex}%`
+            left: `${(100 / tabs.length) * activeTabIndex}%`,
           }}
         />
       </div>
