@@ -6,13 +6,23 @@ import { Header } from '@components/Header'
 import { HeaderTabs, Tab } from '@components/HeaderTabs'
 import { BottomAppBar } from '@components/BottomAppBar'
 import { TabContent } from '@components/TabContent'
+import { CallDetail } from '@components/CallDetail'
 
 export function App() {
   const { data: calls, isLoading, error, archiveCall, archiveAllCalls } = useCalls()
   const [activeTab, setActiveTab] = useState<Tab['id']>('inbox')
+  const [selectedCallId, setSelectedCallId] = useState<string | null>(null)
   const [bottomNavActive, setBottomNavActive] = useState<
     'phone' | 'profile' | 'dialpad' | 'settings' | 'status'
   >('phone')
+  
+  const handleCallSelect = (callId: string) => {
+    setSelectedCallId(callId)
+  }
+  
+  const handleCloseCallDetail = () => {
+    setSelectedCallId(null)
+  }
 
   // Calculate missed calls count
   const missedCallsCount = useMemo(() => {
@@ -50,6 +60,7 @@ export function App() {
           error={error as Error | null}
           onArchiveCall={archiveCall}
           onArchiveAllCalls={archiveAllCalls}
+          onCallSelect={handleCallSelect}
         />
       </div>
 
@@ -63,6 +74,15 @@ export function App() {
         onSettingsClick={() => setBottomNavActive('settings')}
         onStatusClick={() => setBottomNavActive('status')}
       />
+      
+      {/* Call Detail Modal */}
+      {selectedCallId && (
+        <CallDetail
+          callId={selectedCallId}
+          onClose={handleCloseCallDetail}
+          onArchive={archiveCall}
+        />
+      )}
     </div>
   )
 }
