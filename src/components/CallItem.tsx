@@ -18,13 +18,16 @@ interface CallItemProps {
 }
 
 export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, onArchive, missedCallCount = 0 }) => {
-  const formatTime = (dateString: string) => {
+  const getFormattedTime = (dateString: string) => {
     const date = new Date(dateString)
     const hours = date.getHours()
     const minutes = date.getMinutes().toString().padStart(2, '0')
     const period = hours >= 12 ? 'PM' : 'AM'
     const formattedHours = hours % 12 || 12
-    return `${formattedHours}:${minutes} ${period}`
+    return {
+      time: `${formattedHours}:${minutes}`,
+      period
+    }
   }
 
   const formatPhoneNumber = (phoneNumber?: number) => {
@@ -92,8 +95,10 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
         )}
       </div>
       <div className="call-time-container">
-        <div className="call-time">{formatTime(call.created_at)}</div>
-        <div className="call-status">{call.call_type.toUpperCase()}</div>
+        <div className="call-time">
+          <span className="call-time-value">{getFormattedTime(call.created_at).time}</span>
+          <span className="call-time-period">{getFormattedTime(call.created_at).period}</span>
+        </div>
       </div>
       {!call.is_archived && onArchive && (
         <button

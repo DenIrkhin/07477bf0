@@ -124,35 +124,30 @@
 /* Call time */
 .call-time-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   margin-left: 12px;
   flex-shrink: 0;
+  height: 100%;
 }
 
 .call-time {
   font-size: 14px;
   color: #8e8e93;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
-.call-status {
+.call-time-value {
+  margin-right: 4px;
+}
+
+.call-time-period {
   font-size: 12px;
-  font-weight: 500;
-  margin-top: 4px;
-  white-space: nowrap;
-}
-
-.call-item.missed .call-status {
-  color: #ff5d3e;
-}
-
-.call-item.answered .call-status {
-  color: #00bd82;
-}
-
-.call-item.voicemail .call-status {
-  color: #ffc000;
+  border: 1px solid #dddddd;
+  padding: 1px 4px;
+  border-radius: 4px;
 }
 
 /* Archive button */
@@ -162,19 +157,22 @@
   justify-content: center;
   background: transparent;
   border: none;
-  width: 42px;
-  height: 42px;
-  padding: 8px 0 8px 8px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
   margin-left: 0;
   border-radius: 50%;
   cursor: pointer;
   opacity: 0.7;
   transition: all 0.2s ease;
+  outline: none;
 }
 
-.call-archive-button:hover {
+.call-archive-button:hover,
+.call-archive-button:focus {
   background-color: var(--color-background-grey-two);
   opacity: 1;
+  outline: none;
 }
 
 .call-archive-button .archive-icon {
