@@ -62,9 +62,11 @@ export function useCalls() {
     console.log(`Toggling archive status for call ${callId}`)
 
     // Get the current state of the call to determine the new archived state
-    const currentCalls = queryClient.getQueryData(['calls', { userId: CURRENT_USER_ID }]) as
-      | CallWithContact[]
-      | undefined
+    const currentCalls = queryClient.getQueryData<CallWithContact[]>([
+      'calls',
+      { userId: CURRENT_USER_ID },
+    ])
+
     const callToUpdate = currentCalls?.find((call) => call.id === callId)
     const newArchivedState = callToUpdate ? !callToUpdate.is_archived : true
 
@@ -119,9 +121,10 @@ export function useCalls() {
   const archiveAllCalls = async () => {
     console.log('Archiving all calls')
     // Get the current state of the call to determine the new archived state
-    const currentCalls = queryClient.getQueryData(['calls', { userId: CURRENT_USER_ID }]) as
-      | CallWithContact[]
-      | undefined
+    const currentCalls = queryClient.getQueryData<CallWithContact[]>([
+      'calls',
+      { userId: CURRENT_USER_ID },
+    ])
 
     // Optimistically update the cache
     queryClient.setQueryData(
@@ -192,15 +195,15 @@ export function useCalls() {
   })
 
   return {
-    data: useQuery({
+    data: useQuery<CallWithContact[], Error>({
       queryKey: ['calls', { userId: CURRENT_USER_ID }],
       queryFn: fetchCalls,
     }).data,
-    isLoading: useQuery({
+    isLoading: useQuery<CallWithContact[], Error>({
       queryKey: ['calls', { userId: CURRENT_USER_ID }],
       queryFn: fetchCalls,
     }).isLoading,
-    error: useQuery({
+    error: useQuery<CallWithContact[], Error>({
       queryKey: ['calls', { userId: CURRENT_USER_ID }],
       queryFn: fetchCalls,
     }).error,

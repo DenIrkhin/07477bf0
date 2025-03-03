@@ -28,12 +28,12 @@ export function TabContent({
   useEffect(() => {
     setAnimateKey((prev) => prev + 1)
   }, [activeTab])
+
   if (activeTab === 'tune') {
     return (
       <div
         key={`tune-${animateKey}`}
-        className="coming-soon-container"
-        style={{ overflow: 'hidden', height: '100%', maxHeight: 'calc(100vh - 150px)' }}
+        className="coming-soon-container tune-container"
       >
         <div className="coming-soon-message">
           <h3>We're excited to announce new tunings!</h3>
@@ -46,14 +46,7 @@ export function TabContent({
   return (
     <div
       key={`tab-${activeTab}-${animateKey}`}
-      className="tab-content-enter"
-      style={{
-        height: '100%',
-        overflow: 'hidden',
-        maxWidth: '100%',
-        position: 'relative',
-        width: '100%',
-      }}
+      className="tab-content-enter tab-content-container"
     >
       <CallList
         calls={calls}

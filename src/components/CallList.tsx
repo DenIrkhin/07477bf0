@@ -24,7 +24,6 @@ export function CallList({
 }: CallListProps) {
   const [selectedCallId, setSelectedCallId] = useState<string | null>(null)
 
-  // Filter calls based on isArchived prop
   const filteredCalls = calls.filter((call) => call.is_archived === isArchived)
 
   // Group calls by date and count missed calls by the same person on the same day
