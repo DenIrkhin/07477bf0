@@ -5,8 +5,9 @@ import { CURRENT_USER_ID } from '@content/crm'
 import archiveIcon from '@assets/icons/Dark/Color=Black, Type=business-bag.svg'
 import unarchiveIcon from '@assets/icons/Dark/Color=Black, Type=folder.svg'
 import greenCallIcon from '@assets/icons/Green/Color=Green, Type=call_2.svg'
-import callOutgoingGreenIcon from '@assets/icons/call-outgoing-green.svg'
+import callOutgoingGreenIcon from '@assets/icons/call-outgoing.svg'
 import callMissedIcon from '@assets/icons/call-missed.svg'
+import callOutgoingMissedIcon from '@assets/icons/call-outgoing-missed.svg'
 
 interface CallItemProps {
   call: CallWithContact
@@ -65,31 +66,14 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
             width="22"
             height="22"
           />
-        ) : (
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {call.direction === Direction.INBOUND ? (
-              <path
-                d="M12 4L4 12M4 4L12 12"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            ) : (
-              <path
-                d="M4 8H12M12 8L8 4M12 8L8 12"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            )}
-          </svg>
-        )}
+        ) : call.direction === Direction.OUTBOUND && call.call_type === CallType.MISSED ? (
+          <img
+            src={callOutgoingMissedIcon}
+            alt="Outbound Missed Call"
+            width="22"
+            height="22"
+          />
+        ) : null}
       </div>
       <div className="call-content">
         <div className="call-person">{personName}</div>
