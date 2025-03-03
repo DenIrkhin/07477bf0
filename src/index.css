@@ -58,6 +58,10 @@
   --color-text-dark-blue: #073f56;
   --color-text-light-grey: #f7f8fc;
   --color-text-white: #ffffff;
+  
+  /* Shadows */
+  --shadow-subtle-top: 0 -20px 25px -5px rgba(0, 0, 0, 0.03), 0 -10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-subtle-bottom: 0 20px 25px -5px rgba(0, 0, 0, 0.03), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
 
   font-family: 'Fellix', 'Sen', system-ui, Helvetica, Arial, sans;
   line-height: 1.5;
