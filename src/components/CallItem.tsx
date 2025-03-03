@@ -1,9 +1,12 @@
 import React from 'react'
 import './CallItem.css'
-import { CallWithContact } from '@hooks/useCalls'
+import { CallWithContact, CallType, Direction } from '@hooks/useCalls'
 import { CURRENT_USER_ID } from '@content/crm'
 import archiveIcon from '@assets/icons/Dark/Color=Black, Type=business-bag.svg'
 import unarchiveIcon from '@assets/icons/Dark/Color=Black, Type=folder.svg'
+import greenCallIcon from '@assets/icons/Green/Color=Green, Type=call_2.svg'
+import callOutgoingGreenIcon from '@assets/icons/call-outgoing-green.svg'
+import callMissedIcon from '@assets/icons/call-missed.svg'
 
 interface CallItemProps {
   call: CallWithContact
@@ -39,41 +42,64 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
       onClick={() => onSelect(call.id)}
     >
       <div
-        className={`call-icon ${call.direction === 'inbound' ? 'incoming' : 'outgoing'} ${call.call_type}`}
+        className={`call-icon ${call.direction === Direction.INBOUND ? 'inbound' : 'outbound'} ${call.call_type}`}
       >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {call.direction === 'inbound' ? (
-            <path
-              d="M12 4L4 12M4 4L12 12"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          ) : (
-            <path
-              d="M4 8H12M12 8L8 4M12 8L8 12"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          )}
-        </svg>
+        {call.direction === Direction.INBOUND && call.call_type === CallType.ANSWERED ? (
+          <img
+            src={greenCallIcon}
+            alt="Inbound Call"
+            width="22"
+            height="22"
+          />
+        ) : call.direction === Direction.OUTBOUND && call.call_type === CallType.ANSWERED ? (
+          <img
+            src={callOutgoingGreenIcon}
+            alt="Outbound Call"
+            width="22"
+            height="22"
+          />
+        ) : call.direction === Direction.INBOUND && call.call_type === CallType.MISSED ? (
+          <img
+            src={callMissedIcon}
+            alt="Missed Call"
+            width="22"
+            height="22"
+          />
+        ) : (
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {call.direction === Direction.INBOUND ? (
+              <path
+                d="M12 4L4 12M4 4L12 12"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            ) : (
+              <path
+                d="M4 8H12M12 8L8 4M12 8L8 12"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            )}
+          </svg>
+        )}
       </div>
       <div className="call-content">
         <div className="call-person">{personName}</div>
         {call.via && (
           <div className="call-details">
             {call.call_type === 'answered'
-              ? call.direction === 'inbound'
+              ? call.direction === Direction.INBOUND
                 ? 'called you'
                 : 'called'
-              : `tried to call ${call.direction === 'inbound' ? 'you' : otherPerson?.name || 'unknown'}`}
+              : `tried to call ${call.direction === Direction.INBOUND ? 'you' : otherPerson?.name || 'unknown'}`}
           </div>
         )}
       </div>

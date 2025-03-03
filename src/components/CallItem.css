@@ -51,29 +51,29 @@
   flex-shrink: 0;
 }
 
-.call-icon.incoming {
+.call-icon.inbound {
   background-color: #e0f5ee;
 }
 
-.call-icon.outgoing {
+.call-icon.outbound {
   background-color: #e0f5ee;
 }
 
-.call-icon.incoming.missed {
+.call-icon.inbound.missed {
   background-color: #ffebe8;
 }
 
-.call-icon.outgoing.missed {
+.call-icon.outbound.missed {
   background-color: #ffebe8;
 }
 
-.call-icon.incoming svg,
-.call-icon.outgoing svg {
+.call-icon.inbound svg,
+.call-icon.outbound svg {
   stroke: #00bd82;
 }
 
-.call-icon.incoming.missed svg,
-.call-icon.outgoing.missed svg {
+.call-icon.inbound.missed svg,
+.call-icon.outbound.missed svg {
   stroke: #ff5d3e;
 }
 
