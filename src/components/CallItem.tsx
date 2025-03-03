@@ -42,7 +42,6 @@ export const CallItem: React.FC<CallItemProps> = ({
     return `+${numStr.substring(0, 2)} ${numStr.substring(2, 4)} ${numStr.substring(4, 6)} ${numStr.substring(6, 8)} ${numStr.substring(8)}`
   }
 
-  // Get the person who is not the current user
   const otherPerson = call.fromContact?.id === CURRENT_USER_ID ? call.toContact : call.fromContact
   const personName =
     otherPerson?.name || formatPhoneNumber(call.from !== CURRENT_USER_ID ? call.from : call.to)
@@ -110,7 +109,7 @@ export const CallItem: React.FC<CallItemProps> = ({
         <button
           className="call-archive-button"
           onClick={(e) => {
-            e.stopPropagation() // Prevent triggering the parent onClick
+            e.stopPropagation()
             onArchive(call.id)
           }}
         >
@@ -125,7 +124,7 @@ export const CallItem: React.FC<CallItemProps> = ({
         <button
           className="call-archive-button"
           onClick={(e) => {
-            e.stopPropagation() // Prevent triggering the parent onClick
+            e.stopPropagation()
             onArchive(call.id)
           }}
         >

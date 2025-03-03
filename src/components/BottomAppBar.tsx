@@ -28,7 +28,7 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
   return (
     <div className="bottom-app-bar">
       <div className="bottom-app-bar-content">
-        {/* Adding green indicator line */}
+        {/* Green indicator line */}
         <div className="bottom-indicator-container">
           <div className={`bottom-indicator ${activeTab}`}></div>
         </div>

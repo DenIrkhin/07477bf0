@@ -49,6 +49,20 @@
   max-height: calc(100vh - 150px);
 }
 
+.tune-container {
+  overflow: hidden;
+  height: 100%;
+  max-height: calc(100vh - 150px);
+}
+
+.tab-content-container {
+  height: 100%;
+  overflow: hidden;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+}
+
 .coming-soon-message {
   text-align: center;
   max-width: 400px;
