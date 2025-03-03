@@ -1,6 +1,7 @@
 import React from 'react'
 import './CallItem.css'
 import { CallWithContact } from '@hooks/useCalls'
+import { CURRENT_USER_ID } from '@content/crm'
 import archiveIcon from '@assets/icons/Dark/Color=Black, Type=business-bag.svg'
 import unarchiveIcon from '@assets/icons/Dark/Color=Black, Type=folder.svg'
 
@@ -28,8 +29,9 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
   }
 
   // Get the person who is not the current user
-  const otherPerson = call.fromContact?.id === 2 ? call.toContact : call.fromContact
-  const personName = otherPerson?.name || formatPhoneNumber(call.from !== 2 ? call.from : call.to)
+  const otherPerson = call.fromContact?.id === CURRENT_USER_ID ? call.toContact : call.fromContact
+  const personName =
+    otherPerson?.name || formatPhoneNumber(call.from !== CURRENT_USER_ID ? call.from : call.to)
 
   return (
     <div
@@ -67,7 +69,11 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
         <div className="call-person">{personName}</div>
         {call.via && (
           <div className="call-details">
-            tried to call on {call.direction === 'inbound' ? 'you' : otherPerson?.name || 'unknown'}
+            {call.call_type === 'answered'
+              ? call.direction === 'inbound'
+                ? 'called you'
+                : 'called'
+              : `tried to call ${call.direction === 'inbound' ? 'you' : otherPerson?.name || 'unknown'}`}
           </div>
         )}
       </div>
