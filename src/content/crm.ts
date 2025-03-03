@@ -22,7 +22,7 @@ export const contacts: Contact[] = [
   { id: 8, name: 'James Taylor' },
   { id: 9, name: 'Jennifer Brown' },
   { id: 10, name: 'Robert Anderson' },
-  { id: 123456, name: 'Unknown Caller' },
+  { id: 123456, name: 'Unknown Caller with another very long name' },
 ]
 
 // Helper function to get contact by ID

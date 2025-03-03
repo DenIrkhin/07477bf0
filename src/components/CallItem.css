@@ -1,7 +1,7 @@
 .call-item {
   display: flex;
   align-items: center;
-  padding: 16px;
+  padding: 16px 8px 16px 16px;
   border: 1px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
@@ -49,32 +49,52 @@
   justify-content: center;
   margin-right: 12px;
   flex-shrink: 0;
+  position: relative;
 }
 
-.call-icon.incoming {
+.call-icon.inbound {
   background-color: #e0f5ee;
 }
 
-.call-icon.outgoing {
+.call-icon.outbound {
   background-color: #e0f5ee;
 }
 
-.call-icon.incoming.missed {
+.call-icon.inbound.missed {
   background-color: #ffebe8;
 }
 
-.call-icon.outgoing.missed {
+.call-icon.outbound.missed {
   background-color: #ffebe8;
 }
 
-.call-icon.incoming svg,
-.call-icon.outgoing svg {
-  stroke: #00bd82;
+.call-icon.inbound svg,
+.call-icon.outbound svg {
+  stroke: var(--color-green-brand);
 }
 
-.call-icon.incoming.missed svg,
-.call-icon.outgoing.missed svg {
-  stroke: #ff5d3e;
+.call-icon.inbound.missed svg,
+.call-icon.outbound.missed svg {
+  stroke: var(--color-orange-brand);
+}
+
+/* Call counter badge */
+.call-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: var(--color-orange-brand);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+  box-sizing: border-box;
 }
 
 /* Call content */
@@ -104,35 +124,30 @@
 /* Call time */
 .call-time-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   margin-left: 12px;
   flex-shrink: 0;
+  height: 100%;
 }
 
 .call-time {
   font-size: 14px;
   color: #8e8e93;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 }
 
-.call-status {
+.call-time-value {
+  margin-right: 4px;
+}
+
+.call-time-period {
   font-size: 12px;
-  font-weight: 500;
-  margin-top: 4px;
-  white-space: nowrap;
-}
-
-.call-item.missed .call-status {
-  color: #ff5d3e;
-}
-
-.call-item.answered .call-status {
-  color: #00bd82;
-}
-
-.call-item.voicemail .call-status {
-  color: #ffc000;
+  border: 1px solid #dddddd;
+  padding: 1px 4px;
+  border-radius: 4px;
 }
 
 /* Archive button */
@@ -144,20 +159,23 @@
   border: none;
   width: 36px;
   height: 36px;
-  padding: 8px;
-  margin-left: 8px;
+  padding: 6px;
+  margin-left: 0;
   border-radius: 50%;
   cursor: pointer;
   opacity: 0.7;
   transition: all 0.2s ease;
+  outline: none;
 }
 
-.call-archive-button:hover {
+.call-archive-button:hover,
+.call-archive-button:focus {
   background-color: var(--color-background-grey-two);
   opacity: 1;
+  outline: none;
 }
 
 .call-archive-button .archive-icon {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }

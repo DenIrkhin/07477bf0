@@ -13,6 +13,7 @@ interface BottomAppBarProps {
   onDialpadClick?: () => void
   onSettingsClick?: () => void
   onStatusClick?: () => void
+  activeTab?: 'phone' | 'profile' | 'dialpad' | 'settings' | 'status'
 }
 
 export const BottomAppBar: React.FC<BottomAppBarProps> = ({
@@ -22,12 +23,19 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
   onDialpadClick,
   onSettingsClick,
   onStatusClick,
+  activeTab = 'phone',
 }) => {
   return (
     <div className="bottom-app-bar">
       <div className="bottom-app-bar-content">
+        {/* Adding green indicator line */}
+        <div className="bottom-indicator-container">
+          <div 
+            className={`bottom-indicator ${activeTab}`}
+          ></div>
+        </div>
         <div
-          className="nav-item active"
+          className={`nav-item ${activeTab === 'phone' ? 'active' : ''}`}
           onClick={onPhoneClick}
         >
           <div className="icon-wrapper">
@@ -43,7 +51,7 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
         </div>
 
         <div
-          className="nav-item"
+          className={`nav-item ${activeTab === 'profile' ? 'active' : ''}`}
           onClick={onProfileClick}
         >
           <img
@@ -54,7 +62,7 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
         </div>
 
         <div
-          className="dialpad-button"
+          className={`dialpad-button ${activeTab === 'dialpad' ? 'active' : ''}`}
           onClick={onDialpadClick}
         >
           <img
@@ -65,7 +73,7 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
         </div>
 
         <div
-          className="nav-item"
+          className={`nav-item ${activeTab === 'settings' ? 'active' : ''}`}
           onClick={onSettingsClick}
         >
           <img
@@ -76,7 +84,7 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
         </div>
 
         <div
-          className="nav-item"
+          className={`nav-item ${activeTab === 'status' ? 'active' : ''}`}
           onClick={onStatusClick}
         >
           <div className="status-indicator active"></div>

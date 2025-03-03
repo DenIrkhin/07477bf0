@@ -10,6 +10,7 @@ import { TabContent } from '@components/TabContent'
 export function App() {
   const { data: calls, isLoading, error, archiveCall, archiveAllCalls } = useCalls()
   const [activeTab, setActiveTab] = useState<Tab['id']>('inbox')
+  const [bottomNavActive, setBottomNavActive] = useState<'phone' | 'profile' | 'dialpad' | 'settings' | 'status'>('phone')
 
   // Calculate missed calls count
   const missedCallsCount = useMemo(() => {
@@ -53,11 +54,12 @@ export function App() {
       {/* Bottom bar */}
       <BottomAppBar
         missedCalls={missedCallsCount}
-        onPhoneClick={() => console.log('Phone clicked')}
-        onProfileClick={() => console.log('Profile clicked')}
-        onDialpadClick={() => console.log('Dialpad clicked')}
-        onSettingsClick={() => console.log('Settings clicked')}
-        onStatusClick={() => console.log('Status clicked')}
+        activeTab={bottomNavActive}
+        onPhoneClick={() => setBottomNavActive('phone')}
+        onProfileClick={() => setBottomNavActive('profile')}
+        onDialpadClick={() => setBottomNavActive('dialpad')}
+        onSettingsClick={() => setBottomNavActive('settings')}
+        onStatusClick={() => setBottomNavActive('status')}
       />
     </div>
   )

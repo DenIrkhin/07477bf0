@@ -5,12 +5,13 @@
   background-color: var(--color-background-white);
   height: 56px;
   width: 100%;
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-subtle-top);
   z-index: 100;
   padding: 0;
   box-sizing: border-box;
   border-radius: 0;
   margin-top: auto;
+  position: relative;
 }
 
 .bottom-app-bar-content {
@@ -44,6 +45,16 @@
 
 .nav-item.active {
   opacity: 1;
+}
+
+/* Bottom indicator line styles */
+.bottom-indicator-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: transparent;
 }
 
 .nav-icon {
@@ -93,6 +104,39 @@
   transition:
     box-shadow 0.3s ease,
     transform 0.2s ease;
+  position: relative;
+}
+
+/* Bottom indicator styles */
+.bottom-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 14%; /* 70% of 20% tab width */
+  background-color: var(--color-green-brand);
+  transition: all 0.3s ease;
+  border-radius: 2px 2px 0 0;
+  transform: translateX(-50%); /* Center the indicator based on its left position */
+}
+
+.bottom-indicator.phone {
+  left: 12%; /* Adjusted to be less towards the edge */
+}
+
+.bottom-indicator.profile {
+  left: 30%; /* 20% + 20% ÷ 2 = 30% (center of second tab) */
+}
+
+.bottom-indicator.dialpad {
+  left: 50%; /* 40% + 20% ÷ 2 = 50% (center of dialpad tab) */
+}
+
+.bottom-indicator.settings {
+  left: 70%; /* 60% + 20% ÷ 2 = 70% (center of settings tab) */
+}
+
+.bottom-indicator.status {
+  left: 88%; /* Adjusted to be less towards the edge */
 }
 
 .dialpad-button:hover {

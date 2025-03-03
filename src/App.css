@@ -22,6 +22,8 @@
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
+  z-index: 10;
+  position: relative;
 }
 
 .app-wrapper {
@@ -31,18 +33,24 @@
   width: 100%;
   box-sizing: border-box;
   overflow: hidden !important;
+  position: relative;
 }
 
 .calls-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden !important; /* Hide all scrolling during animations */
   margin: 0;
   padding: 0 20px;
   position: relative;
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
+  background-color: var(--color-background-white);
+  /* Hide scrollbar when content fits */
+  min-height: 0;
+  max-height: calc(100vh - 150px);
 }
 
 .logo {

@@ -1,25 +1,33 @@
 import React from 'react'
 import './CallItem.css'
-import { CallWithContact } from '@hooks/useCalls'
+import { CallWithContact, CallType, Direction } from '@hooks/useCalls'
 import { CURRENT_USER_ID } from '@content/crm'
 import archiveIcon from '@assets/icons/Dark/Color=Black, Type=business-bag.svg'
 import unarchiveIcon from '@assets/icons/Dark/Color=Black, Type=folder.svg'
+import greenCallIcon from '@assets/icons/Green/Color=Green, Type=call_2.svg'
+import callOutgoingGreenIcon from '@assets/icons/call-outgoing.svg'
+import callMissedIcon from '@assets/icons/call-missed.svg'
+import callOutgoingMissedIcon from '@assets/icons/call-outgoing-missed.svg'
 
 interface CallItemProps {
   call: CallWithContact
   isSelected: boolean
   onSelect: (callId: string) => void
   onArchive?: (callId: string) => void
+  missedCallCount?: number
 }
 
-export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, onArchive }) => {
-  const formatTime = (dateString: string) => {
+export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, onArchive, missedCallCount = 0 }) => {
+  const getFormattedTime = (dateString: string) => {
     const date = new Date(dateString)
     const hours = date.getHours()
     const minutes = date.getMinutes().toString().padStart(2, '0')
     const period = hours >= 12 ? 'PM' : 'AM'
     const formattedHours = hours % 12 || 12
-    return `${formattedHours}:${minutes} ${period}`
+    return {
+      time: `${formattedHours}:${minutes}`,
+      period
+    }
   }
 
   const formatPhoneNumber = (phoneNumber?: number) => {
@@ -39,47 +47,58 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
       onClick={() => onSelect(call.id)}
     >
       <div
-        className={`call-icon ${call.direction === 'inbound' ? 'incoming' : 'outgoing'} ${call.call_type}`}
+        className={`call-icon ${call.direction === Direction.INBOUND ? 'inbound' : 'outbound'} ${call.call_type}`}
       >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {call.direction === 'inbound' ? (
-            <path
-              d="M12 4L4 12M4 4L12 12"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+        {call.direction === Direction.INBOUND && call.call_type === CallType.ANSWERED ? (
+          <img
+            src={greenCallIcon}
+            alt="Inbound Call"
+            width="22"
+            height="22"
+          />
+        ) : call.direction === Direction.OUTBOUND && call.call_type === CallType.ANSWERED ? (
+          <img
+            src={callOutgoingGreenIcon}
+            alt="Outbound Call"
+            width="22"
+            height="22"
+          />
+        ) : call.direction === Direction.INBOUND && call.call_type === CallType.MISSED ? (
+          <>
+            <img
+              src={callMissedIcon}
+              alt="Missed Call"
+              width="22"
+              height="22"
             />
-          ) : (
-            <path
-              d="M4 8H12M12 8L8 4M12 8L8 12"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          )}
-        </svg>
+            {missedCallCount > 1 && <div className="call-badge">{missedCallCount}</div>}
+          </>
+        ) : call.direction === Direction.OUTBOUND && call.call_type === CallType.MISSED ? (
+          <img
+            src={callOutgoingMissedIcon}
+            alt="Outbound Missed Call"
+            width="22"
+            height="22"
+          />
+        ) : null}
       </div>
       <div className="call-content">
         <div className="call-person">{personName}</div>
         {call.via && (
           <div className="call-details">
             {call.call_type === 'answered'
-              ? call.direction === 'inbound'
+              ? call.direction === Direction.INBOUND
                 ? 'called you'
                 : 'called'
-              : `tried to call ${call.direction === 'inbound' ? 'you' : otherPerson?.name || 'unknown'}`}
+              : `tried to call ${call.direction === Direction.INBOUND ? 'you' : otherPerson?.name || 'unknown'}`}
           </div>
         )}
       </div>
       <div className="call-time-container">
-        <div className="call-time">{formatTime(call.created_at)}</div>
-        <div className="call-status">{call.call_type.toUpperCase()}</div>
+        <div className="call-time">
+          <span className="call-time-value">{getFormattedTime(call.created_at).time}</span>
+          <span className="call-time-period">{getFormattedTime(call.created_at).period}</span>
+        </div>
       </div>
       {!call.is_archived && onArchive && (
         <button

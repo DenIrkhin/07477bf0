@@ -5,6 +5,9 @@
   height: 100%;
   box-sizing: border-box;
   position: relative;
+  background-color: var(--color-background-white);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .call-list h2 {
@@ -20,21 +23,46 @@
 
 .call-list-container {
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   height: 100%;
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
   position: absolute;
   top: 0;
   left: 0;
+  will-change: transform, opacity;
 }
+
+/* Individual call item animations */
+.call-date-group {
+  animation: slideInUp 0.4s ease-out;
+  animation-fill-mode: both;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered animation for multiple call groups */
+.call-date-group:nth-child(1) { animation-delay: 0.05s; }
+.call-date-group:nth-child(2) { animation-delay: 0.1s; }
+.call-date-group:nth-child(3) { animation-delay: 0.15s; }
+.call-date-group:nth-child(4) { animation-delay: 0.2s; }
+.call-date-group:nth-child(5) { animation-delay: 0.25s; }
 
 .archive-all-container {
   padding: 12px 16px;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  border-left: 1px solid #ddd;
-  border-radius: 0 0 8px 8px;
+  background-color: var(--color-background-white);
 }
 
 .archive-all-button {
@@ -59,7 +87,7 @@
 .archive-icon {
   width: 20px;
   height: 20px;
-  margin-right: 12px;
+  margin-right: 6px;
 }
 
 /* These styles are now handled by CallItem.css */
@@ -70,10 +98,12 @@
   padding: 24px 16px;
   text-align: center;
   color: #666;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: calc(100vh - 200px);
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
 }
