@@ -104,6 +104,12 @@
   top: -1px;
 }
 
+/* Larger icon for tune tab */
+.header-tab:last-child .header-tab-icon {
+  width: 28px;
+  height: 28px;
+}
+
 /* Tab content wrapper */
 .tab-content {
   display: flex;
