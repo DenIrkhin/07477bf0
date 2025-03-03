@@ -30,7 +30,8 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
 
   // Get the person who is not the current user
   const otherPerson = call.fromContact?.id === CURRENT_USER_ID ? call.toContact : call.fromContact
-  const personName = otherPerson?.name || formatPhoneNumber(call.from !== CURRENT_USER_ID ? call.from : call.to)
+  const personName =
+    otherPerson?.name || formatPhoneNumber(call.from !== CURRENT_USER_ID ? call.from : call.to)
 
   return (
     <div
@@ -69,7 +70,9 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
         {call.via && (
           <div className="call-details">
             {call.call_type === 'answered'
-              ? call.direction === 'inbound' ? 'called you' : 'called'
+              ? call.direction === 'inbound'
+                ? 'called you'
+                : 'called'
               : `tried to call ${call.direction === 'inbound' ? 'you' : otherPerson?.name || 'unknown'}`}
           </div>
         )}
