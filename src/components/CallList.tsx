@@ -12,6 +12,7 @@ interface CallListProps {
   isArchived?: boolean
   onArchiveCall?: (callId: string) => void
   onArchiveAllCalls?: () => void
+  onCallSelect?: (callId: string) => void
 }
 
 export function CallList({
@@ -21,8 +22,16 @@ export function CallList({
   isArchived = false,
   onArchiveCall,
   onArchiveAllCalls,
+  onCallSelect,
 }: CallListProps) {
   const [selectedCallId, setSelectedCallId] = useState<string | null>(null)
+
+  const handleCallSelect = (callId: string) => {
+    setSelectedCallId(selectedCallId === callId ? null : callId)
+    if (onCallSelect) {
+      onCallSelect(callId)
+    }
+  }
 
   const filteredCalls = calls.filter((call) => call.is_archived === isArchived)
 
@@ -99,10 +108,6 @@ export function CallList({
     return (
       <div className="call-list-empty">No {isArchived ? 'archived' : 'active'} calls found</div>
     )
-  }
-
-  const handleCallSelect = (callId: string) => {
-    setSelectedCallId(selectedCallId === callId ? null : callId)
   }
 
   const handleArchiveAll = () => {

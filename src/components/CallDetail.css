@@ -1,0 +1,241 @@
+.call-detail-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-background-white);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease-out;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+.call-detail-container.animate-out {
+  animation: slideOutRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Header with back button */
+.call-detail-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--color-background-white);
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.call-detail-back {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-cobalt);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.call-detail-back:hover {
+  color: var(--color-primary);
+}
+
+.call-detail-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+  color: var(--color-background-cobalt);
+}
+
+/* Profile section with color backgrounds */
+.call-detail-profile {
+  padding: 40px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border-radius: 20px 20px 30px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand color backgrounds */
+.color-green {
+  background-color: var(--color-green-brand);
+}
+
+.color-purple {
+  background-color: var(--color-purple-brand);
+}
+
+.color-blue {
+  background-color: var(--color-blue-brand);
+}
+
+.color-yellow {
+  background-color: var(--color-yellow-brand);
+}
+
+.color-pink {
+  background-color: var(--color-pink-brand);
+}
+
+.color-orange {
+  background-color: var(--color-orange-brand);
+}
+
+.call-detail-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #e0ebff; /* Light blue background */
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 4px solid white;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.call-detail-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.call-detail-contact-name {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--color-background-cobalt);
+  text-align: center;
+}
+
+.call-detail-contact-number {
+  font-size: 18px;
+  color: #555;
+  margin: 0;
+  text-align: center;
+}
+
+/* Call details section */
+.call-detail-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.call-detail-body {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--color-background-white);
+  border-radius: 30px 30px 0 0;
+  margin-top: -30px;
+  z-index: 1;
+}
+
+.call-detail-section {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.call-detail-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--color-background-cobalt);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.call-detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 8px 0;
+}
+
+.call-detail-item-label {
+  font-size: 16px;
+  color: #666;
+}
+
+.call-detail-item-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-background-cobalt);
+}
+
+/* Call detail footer */
+.call-detail-footer {
+  padding: 16px 24px 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.archive-btn {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-background-cobalt);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.archive-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+.archive-btn img {
+  opacity: 0.7;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #666;
+  font-size: 16px;
+}

@@ -6,13 +6,26 @@ import { Header } from '@components/Header'
 import { HeaderTabs, Tab } from '@components/HeaderTabs'
 import { BottomAppBar } from '@components/BottomAppBar'
 import { TabContent } from '@components/TabContent'
+import { CallDetail } from '@components/CallDetail'
 
 export function App() {
   const { data: calls, isLoading, error, archiveCall, archiveAllCalls } = useCalls()
   const [activeTab, setActiveTab] = useState<Tab['id']>('inbox')
+  const [selectedCallId, setSelectedCallId] = useState<string | null>(null)
+  const [viewState, setViewState] = useState<'list' | 'detail'>('list')
   const [bottomNavActive, setBottomNavActive] = useState<
     'phone' | 'profile' | 'dialpad' | 'settings' | 'status'
   >('phone')
+
+  const handleCallSelect = (callId: string) => {
+    setSelectedCallId(callId)
+    setViewState('detail')
+  }
+
+  const handleBackToList = () => {
+    setViewState('list')
+    setSelectedCallId(null)
+  }
 
   // Calculate missed calls count
   const missedCallsCount = useMemo(() => {
@@ -36,21 +49,37 @@ export function App() {
           <HeaderTabs
             tabs={tabs}
             defaultActiveTab="inbox"
-            onTabChange={setActiveTab}
+            activeTab={activeTab}
+            onTabChange={(tabId) => {
+              setActiveTab(tabId)
+              // If we're in detail view, switch back to list view
+              if (viewState === 'detail') {
+                setViewState('list')
+              }
+            }}
           />
         </Header>
       </div>
 
       {/* Content section */}
       <div className="container calls-container">
-        <TabContent
-          activeTab={activeTab}
-          calls={calls}
-          isLoading={isLoading}
-          error={error as Error | null}
-          onArchiveCall={archiveCall}
-          onArchiveAllCalls={archiveAllCalls}
-        />
+        {viewState === 'list' ? (
+          <TabContent
+            activeTab={activeTab}
+            calls={calls}
+            isLoading={isLoading}
+            error={error as Error | null}
+            onArchiveCall={archiveCall}
+            onArchiveAllCalls={archiveAllCalls}
+            onCallSelect={handleCallSelect}
+          />
+        ) : (
+          <CallDetail
+            callId={selectedCallId}
+            onBack={handleBackToList}
+            onArchive={archiveCall}
+          />
+        )}
       </div>
 
       {/* Bottom bar */}

@@ -11,6 +11,7 @@ export interface TabContentProps {
   error?: Error | null
   onArchiveCall?: (callId: string) => void
   onArchiveAllCalls?: () => void
+  onCallSelect?: (callId: string) => void
 }
 
 export function TabContent({
@@ -20,6 +21,7 @@ export function TabContent({
   error,
   onArchiveCall,
   onArchiveAllCalls,
+  onCallSelect,
 }: TabContentProps) {
   // State to trigger animation
   const [animateKey, setAnimateKey] = useState(0)
@@ -55,6 +57,7 @@ export function TabContent({
         isArchived={activeTab === 'archived'}
         onArchiveCall={onArchiveCall}
         onArchiveAllCalls={onArchiveAllCalls}
+        onCallSelect={onCallSelect}
       />
     </div>
   )
