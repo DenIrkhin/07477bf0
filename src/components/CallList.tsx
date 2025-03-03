@@ -25,7 +25,7 @@ export function CallList({
   onCallSelect,
 }: CallListProps) {
   const [selectedCallId, setSelectedCallId] = useState<string | null>(null)
-  
+
   const handleCallSelect = (callId: string) => {
     setSelectedCallId(selectedCallId === callId ? null : callId)
     if (onCallSelect) {

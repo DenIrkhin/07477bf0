@@ -9,7 +9,7 @@ export enum ContactColor {
   BLUE = 'blue',
   YELLOW = 'yellow',
   PINK = 'pink',
-  ORANGE = 'orange'
+  ORANGE = 'orange',
 }
 
 export interface Contact {

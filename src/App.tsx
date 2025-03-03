@@ -16,12 +16,12 @@ export function App() {
   const [bottomNavActive, setBottomNavActive] = useState<
     'phone' | 'profile' | 'dialpad' | 'settings' | 'status'
   >('phone')
-  
+
   const handleCallSelect = (callId: string) => {
     setSelectedCallId(callId)
     setViewState('detail')
   }
-  
+
   const handleBackToList = () => {
     setViewState('list')
     setSelectedCallId(null)

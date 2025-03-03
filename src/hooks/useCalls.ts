@@ -55,8 +55,6 @@ const fetchCalls = async () => {
   return enrichedCalls
 }
 
-
-
 export function useCalls() {
   const queryClient = useQueryClient()
 

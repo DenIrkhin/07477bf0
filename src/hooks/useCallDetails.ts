@@ -12,7 +12,7 @@ const fetchCallById = async (callId: string): Promise<CallWithContact> => {
   }
 
   const call = await response.json()
-  
+
   // Enrich call with contact information
   const enrichedCall = {
     ...call,
