@@ -11,6 +11,13 @@ header {
   box-sizing: border-box;
   position: relative;
   z-index: 100;
+  overflow: hidden;
+  border-bottom: 2px solid #e8e8e8;
+  /* Curved background with gradient fill */
+  background-image: url('../assets/header-curve.svg');
+  background-position: left bottom -1px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .header-left {

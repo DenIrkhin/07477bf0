@@ -37,8 +37,9 @@
   position: relative;
 }
 
-/* Add divider between tabs except the last one */
-.header-tab:not(:last-child)::after {
+/* Add divider between text tabs but not after the tune icon tab */
+.header-tab:nth-child(1)::after,
+.header-tab:nth-child(2)::after {
   content: '';
   position: absolute;
   right: 0;
@@ -67,7 +68,7 @@
 .header-tab.active {
   color: var(--color-text-cobalt);
   font-weight: 600;
-  background-color: var(--color-background-white);
+  background-color: transparent;
   border: none !important;
   outline: none !important;
 }
