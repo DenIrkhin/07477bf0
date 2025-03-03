@@ -12,26 +12,18 @@ import callOutgoingMissedIcon from '@assets/icons/call-outgoing-missed.svg'
 
 interface CallDetailProps {
   callId: string | null
-  onClose: () => void
+  onBack: () => void
   onArchive?: (callId: string) => void
 }
 
-export const CallDetail = ({ callId, onClose, onArchive }: CallDetailProps) => {
+export const CallDetail = ({ callId, onBack, onArchive }: CallDetailProps) => {
   const { data: call, isLoading, error } = useCallDetails(callId)
   const [animateOut, setAnimateOut] = useState(false)
 
-  useEffect(() => {
-    // Prevent body scrolling when modal is open
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = 'auto'
-    }
-  }, [])
-
-  const handleClose = () => {
+  const handleBack = () => {
     setAnimateOut(true)
     setTimeout(() => {
-      onClose()
+      onBack()
     }, 300)
   }
 
@@ -79,11 +71,11 @@ export const CallDetail = ({ callId, onClose, onArchive }: CallDetailProps) => {
 
   if (isLoading) {
     return (
-      <div className="call-detail-modal">
+      <div className="call-detail-container">
         <div className="call-detail-content">
           <div className="call-detail-header">
+            <button className="call-detail-back" onClick={handleBack}>←</button>
             <h2 className="call-detail-title">Loading...</h2>
-            <button className="call-detail-close" onClick={handleClose}>×</button>
           </div>
           <div className="call-detail-body">
             <div className="loading-spinner">Loading...</div>
@@ -95,11 +87,11 @@ export const CallDetail = ({ callId, onClose, onArchive }: CallDetailProps) => {
 
   if (error || !call) {
     return (
-      <div className="call-detail-modal">
+      <div className="call-detail-container">
         <div className="call-detail-content">
           <div className="call-detail-header">
+            <button className="call-detail-back" onClick={handleBack}>←</button>
             <h2 className="call-detail-title">Error</h2>
-            <button className="call-detail-close" onClick={handleClose}>×</button>
           </div>
           <div className="call-detail-body">
             <p>There was an error loading the call details. Please try again.</p>
@@ -113,22 +105,12 @@ export const CallDetail = ({ callId, onClose, onArchive }: CallDetailProps) => {
   const personName = otherPerson?.name || formatPhoneNumber(call.from !== CURRENT_USER_ID ? call.from : call.to)
   const personInitial = personName ? personName.charAt(0).toUpperCase() : '?'
 
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Only close if clicking directly on the overlay, not its children
-    if (e.target === e.currentTarget) {
-      handleClose()
-    }
-  }
-
   return (
-    <div 
-      className={`call-detail-modal ${animateOut ? 'animate-out' : ''}`}
-      onClick={handleOverlayClick}
-    >
+    <div className={`call-detail-container ${animateOut ? 'animate-out' : ''}`}>
       <div className="call-detail-content">
         <div className="call-detail-header">
+          <button className="call-detail-back" onClick={handleBack}>←</button>
           <h2 className="call-detail-title">Call Details</h2>
-          <button className="call-detail-close" onClick={handleClose}>×</button>
         </div>
         <div className="call-detail-body">
           <div className="call-detail-contact">
@@ -178,7 +160,7 @@ export const CallDetail = ({ callId, onClose, onArchive }: CallDetailProps) => {
                   className="call-detail-action-button archive-button"
                   onClick={() => {
                     onArchive(call.id)
-                    handleClose()
+                    handleBack()
                   }}
                 >
                   <img 

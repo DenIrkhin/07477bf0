@@ -1,49 +1,48 @@
-.call-detail-modal {
-  position: fixed;
+.call-detail-container {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--color-background-white);
+  z-index: 10;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-out;
+  flex-direction: column;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.call-detail-container.animate-out {
+  animation: slideOutRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 .call-detail-content {
   background-color: var(--color-background-white);
   width: 100%;
-  max-width: 450px;
-  height: 80vh;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: slideUpIn 0.3s ease-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
-@keyframes slideUpIn {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .call-detail-header {
   display: flex;
@@ -51,6 +50,24 @@
   padding: 16px;
   border-bottom: 1px solid var(--color-border-grey);
   position: relative;
+}
+
+.call-detail-back {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-grey);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.call-detail-back:hover {
+  color: var(--color-primary);
 }
 
 .call-detail-close {
