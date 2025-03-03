@@ -17,7 +17,13 @@ interface CallItemProps {
   missedCallCount?: number
 }
 
-export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, onArchive, missedCallCount = 0 }) => {
+export const CallItem: React.FC<CallItemProps> = ({
+  call,
+  isSelected,
+  onSelect,
+  onArchive,
+  missedCallCount = 0,
+}) => {
   const getFormattedTime = (dateString: string) => {
     const date = new Date(dateString)
     const hours = date.getHours()
@@ -26,7 +32,7 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
     const formattedHours = hours % 12 || 12
     return {
       time: `${formattedHours}:${minutes}`,
-      period
+      period,
     }
   }
 

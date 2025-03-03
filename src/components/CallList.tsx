@@ -40,31 +40,33 @@ export function CallList({
     // First pass: count missed inbound calls by caller and date
     sortedCalls.forEach((call) => {
       const dateOnly = call.created_at.split('T')[0]
-      const isInboundMissed = call.direction === Direction.INBOUND && call.call_type === CallType.MISSED
-      
+      const isInboundMissed =
+        call.direction === Direction.INBOUND && call.call_type === CallType.MISSED
+
       if (isInboundMissed) {
         const callerId = String(call.from) // Use the caller's ID as string
-        
+
         if (!missedCallCounts[dateOnly]) {
           missedCallCounts[dateOnly] = {}
         }
-        
+
         if (!missedCallCounts[dateOnly][callerId]) {
           missedCallCounts[dateOnly][callerId] = 0
         }
-        
+
         missedCallCounts[dateOnly][callerId]++
       }
     })
 
     // Second pass: group calls by date and filter out duplicate missed calls
     const processedCallerIds: Record<string, Set<string>> = {}
-    
+
     sortedCalls.forEach((call) => {
       const dateOnly = call.created_at.split('T')[0]
-      const isInboundMissed = call.direction === Direction.INBOUND && call.call_type === CallType.MISSED
+      const isInboundMissed =
+        call.direction === Direction.INBOUND && call.call_type === CallType.MISSED
       const callerId = String(call.from) // Use the caller's ID as string
-      
+
       if (!groups[dateOnly]) {
         groups[dateOnly] = []
         processedCallerIds[dateOnly] = new Set()
@@ -77,13 +79,13 @@ export function CallList({
         }
         processedCallerIds[dateOnly].add(callerId)
       }
-      
+
       groups[dateOnly].push(call)
     })
 
     return { groups, missedCallCounts }
   }, [filteredCalls])
-  
+
   const { groups, missedCallCounts } = groupedCalls
 
   if (isLoading) {
@@ -142,11 +144,11 @@ export function CallList({
                 onSelect={handleCallSelect}
                 onArchive={onArchiveCall}
                 missedCallCount={
-                  call.direction === Direction.INBOUND && 
-                  call.call_type === CallType.MISSED && 
-                  missedCallCounts[date]?.[String(call.from)] ? 
-                  missedCallCounts[date][String(call.from)] : 
-                  0
+                  call.direction === Direction.INBOUND &&
+                  call.call_type === CallType.MISSED &&
+                  missedCallCounts[date]?.[String(call.from)]
+                    ? missedCallCounts[date][String(call.from)]
+                    : 0
                 }
               />
             ))}

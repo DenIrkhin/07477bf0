@@ -30,9 +30,7 @@ export const BottomAppBar: React.FC<BottomAppBarProps> = ({
       <div className="bottom-app-bar-content">
         {/* Adding green indicator line */}
         <div className="bottom-indicator-container">
-          <div 
-            className={`bottom-indicator ${activeTab}`}
-          ></div>
+          <div className={`bottom-indicator ${activeTab}`}></div>
         </div>
         <div
           className={`nav-item ${activeTab === 'phone' ? 'active' : ''}`}
