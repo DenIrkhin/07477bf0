@@ -70,12 +70,12 @@
 
 .call-icon.inbound svg,
 .call-icon.outbound svg {
-  stroke: #00bd82;
+  stroke: var(--color-green-brand);
 }
 
 .call-icon.inbound.missed svg,
 .call-icon.outbound.missed svg {
-  stroke: #ff5d3e;
+  stroke: var(--color-orange-brand);
 }
 
 /* Call counter badge */
@@ -83,7 +83,7 @@
   position: absolute;
   top: -10px;
   right: -10px;
-  background-color: #ff5d3e;
+  background-color: var(--color-orange-brand);
   color: white;
   border-radius: 50%;
   font-size: 12px;
