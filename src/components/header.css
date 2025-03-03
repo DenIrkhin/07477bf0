@@ -11,7 +11,21 @@ header {
   box-sizing: border-box;
   position: relative;
   z-index: 100;
+  overflow: hidden;
+  border-bottom: 2px solid #e8e8e8;
+  /* Curved background with gradient fill */
+  background-image: url("../assets/header-curve.svg");
+  background-position: left bottom -1px; /* Perfectly align with the bottom border */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /* The SVG includes a gradient fill under the curve from grey at top to lighter at bottom */
+  /* Modified to match the description:
+     - Starts at the left border and goes horizontally until the end of "Activity"
+     - Then curves up smoothly to reach above the 'Inbox' text
+     - Continues flat to the right edge */
 }
+
+/* No additional pseudo-elements needed - using the SVG background for the bent line */
 
 .header-left {
   display: flex;

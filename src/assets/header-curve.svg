@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="100" viewBox="0 0 450 100">
+  <!-- Define gradient from very light grey to almost white -->
+  <defs>
+    <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#eeeeee;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Curve with steep rise followed by perfectly horizontal segment, with gradient fill -->
+  <path d="M143,100 C158,100 168,35 185,15 C195,5 210,5 220,5 L440,5 C446,5 448,8 448,15 L448,100 L143,100" 
+        stroke="#e8e8e8" 
+        stroke-width="1" 
+        fill="url(#curveGradient)" />
+</svg>
