@@ -14,9 +14,10 @@ interface CallItemProps {
   isSelected: boolean
   onSelect: (callId: string) => void
   onArchive?: (callId: string) => void
+  missedCallCount?: number
 }
 
-export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, onArchive }) => {
+export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, onArchive, missedCallCount = 0 }) => {
   const formatTime = (dateString: string) => {
     const date = new Date(dateString)
     const hours = date.getHours()
@@ -60,12 +61,15 @@ export const CallItem: React.FC<CallItemProps> = ({ call, isSelected, onSelect, 
             height="22"
           />
         ) : call.direction === Direction.INBOUND && call.call_type === CallType.MISSED ? (
-          <img
-            src={callMissedIcon}
-            alt="Missed Call"
-            width="22"
-            height="22"
-          />
+          <>
+            <img
+              src={callMissedIcon}
+              alt="Missed Call"
+              width="22"
+              height="22"
+            />
+            {missedCallCount > 1 && <div className="call-badge">{missedCallCount}</div>}
+          </>
         ) : call.direction === Direction.OUTBOUND && call.call_type === CallType.MISSED ? (
           <img
             src={callOutgoingMissedIcon}

@@ -49,6 +49,7 @@
   justify-content: center;
   margin-right: 12px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .call-icon.inbound {
@@ -75,6 +76,25 @@
 .call-icon.inbound.missed svg,
 .call-icon.outbound.missed svg {
   stroke: #ff5d3e;
+}
+
+/* Call counter badge */
+.call-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ff5d3e;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+  box-sizing: border-box;
 }
 
 /* Call content */
