@@ -38,7 +38,8 @@
 }
 
 /* Add divider between text tabs but not after the tune icon tab */
-.header-tab:nth-child(1)::after, .header-tab:nth-child(2)::after {
+.header-tab:nth-child(1)::after,
+.header-tab:nth-child(2)::after {
   content: '';
   position: absolute;
   right: 0;
